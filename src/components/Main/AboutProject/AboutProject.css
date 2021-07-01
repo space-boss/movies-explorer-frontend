@@ -1,0 +1,52 @@
+.project-about {
+	width: 100%;
+	padding: 110px 70px;
+}
+
+.project-about__description {
+	display: grid;
+	grid-gap: 2rem;
+	grid-template-columns: 1fr 1fr;
+}
+
+.project-about__paragraph {
+	width: 550px;
+}
+
+.project-about__subtitle {
+	font-size: 20px;
+	font-weight: 400;
+	text-decoration: none;
+	padding-top: 70px;
+	letter-spacing: -0.04em;
+}
+
+.project-about__text {
+	margin-top: 26px;
+}
+
+.project-about__progress {
+	margin-top: 110px;
+	display: grid;
+	grid-template-columns: 1fr 4fr;
+	grid-template-rows: 36px 36px;
+	text-align: center;
+	align-items: center;
+}
+
+.project-about__progress-text {
+	color: #8B8B8B;
+	font-size: 14px;
+	font-weight: 500;
+	padding: 10px;
+}
+
+.project-about__progress-text_bar-checked {
+	background-color: #3DDC84;
+	color: black;
+}
+
+.project-about__progress-text_bar-unchecked {
+	background-color: #303030;
+	color: #FFFFFF;
+}
