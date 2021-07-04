@@ -19,14 +19,23 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  margin-top: 120px;
+  margin: 160px 0 0;
+  padding: 0;
 }
 .promo__link {
+  color: #FFFFFF;
   border-radius: 10px;
   background: #303030;
   padding: 10px 17px;
   font-size: 12px;
   font-weight: 500;
+  text-decoration: none;
+  cursor: pointer;
+  transition: opacity 0.4s;
+}
+
+.promo__link:hover {
+  opacity: 0.6;
 }
 
 .promo__link:not(:last-of-type) {

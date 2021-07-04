@@ -1,0 +1,77 @@
+.movie {
+  background-color: #222222;
+  width: 360px;
+  height: 319px;
+  display: grid;
+  grid-template-rows: 54px 200px 65px;
+  grid-template-areas:
+    "title duration"
+    "pic pic"
+    "saved saved";
+}
+
+.movie__pic {
+  grid-area: pic;
+  object-fit: contain;  
+}
+
+.movie__title {
+  align-self: center;
+  justify-self: left;
+  margin: 0 0 0 18px;
+  grid-area: title;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 18px;
+
+  color: #ffffff;
+}
+
+.movie__duration {
+  align-self: center;
+  justify-self: right;
+  grid-area: duration;
+  margin: 0 18px 0 0;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 13px;
+  line-height: 18px;
+
+  text-align: right;
+
+  color: #8b8b8b;
+}
+
+.movie__save-button {
+  cursor: pointer;
+  grid-area: saved;
+  justify-self: center;
+  align-self: center;
+  color: #ffffff;
+  border: none;
+  border-radius: 20px;
+  background: #313131;
+
+  width: 100px;
+  height: 29px;
+  padding: 9px 15px;
+  overflow: hidden;
+
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 11px;
+  text-decoration: none;
+  transition: opacity 0.4s;
+}
+
+.movie__save-button_pressed {
+  background-image: url(../../../images/save-button_checked.svg);
+  color: transparent;
+}
+
+.movie__save-button:hover {
+  opacity: 0.6;
+}
+

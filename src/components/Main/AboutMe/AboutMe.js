@@ -5,7 +5,7 @@ import studentPicPath from '../../../images/about-irina.jpg';
 
 function AboutMe() {
   return (
-    <div className="about-me">
+    <div id="aboutme" className="about-me">
       <h3 className="main__block-description">Студентка</h3>
       <div className="about-me__info">
         <div class="about-me__bio">

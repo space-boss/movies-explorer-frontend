@@ -4,7 +4,7 @@ import '../Main.css';
 
 function Technologies() {
   return (
-    <div className="techs">
+    <div className="techs" id="techs">
       <h3 className="main__block-description">Технологии</h3>
 
       <div className="techs__main">

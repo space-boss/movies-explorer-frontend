@@ -1,17 +1,52 @@
-import './Footer.css';
-import headerLogoPath from '../../images/header-logo.svg';
-import { Link } from 'react-router-dom';
+import "./Footer.css";
+const newDate = new Date();
+const year = newDate.getFullYear();
 
-function Header() {
+function Footer() {
   return (
-    <header className="header">
-      <img className="header__logo" src={headerLogoPath} alt="Логотип учетной записи"/>
-      <div className="header__links">
-        <Link to="/signup" className="header__link">Регистрация</Link>
-        <Link to="/signin" className="header__link header__link_calltoaction">Войти</Link>
+    <footer className="footer">
+      <p className="footer__summary">
+        Учебный проект Яндекс.Практикум х BeatFilm.
+      </p>
+      <div className="footer__infos">
+      <p className="footer__copyright">© {year}</p>
+      <nav>
+        <ul className="footer__links">
+          <li>
+            <a
+              href="https://praktikum.yandex.ru/"
+              className="footer__link"
+              rel="noreferrer"
+              target="_blank"
+            >
+              Яндекс.Практикум
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://github.com/space-boss"
+              className="footer__link"
+              rel="noreferrer"
+              target="_blank"
+            >
+              Github
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://www.facebook.com/irina.tkrv/"
+              className="footer__link"
+              rel="noreferrer"
+              target="_blank"
+            >
+              Facebook
+            </a>
+          </li>
+        </ul>
+      </nav>
       </div>
-    </header>
+    </footer>
   )
 }
 
-export default Header;
+export default Footer;
