@@ -46,6 +46,11 @@
   background: none;
   border: none;
   cursor: pointer;
+  outline: none;
+}
+
+.profile__info-text_value:focus {
+  border-bottom: 1px solid #4285f4;
 }
 
 .profile__link {

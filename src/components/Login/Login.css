@@ -1,0 +1,10 @@
+.login {
+  display: flex;
+  flex-direction: column;
+  max-width: 396px;
+  margin: 70px auto;
+}
+
+.form__redirect-login {
+  margin: 0 auto;
+}

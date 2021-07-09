@@ -1,22 +1,44 @@
-import React from 'react';
-import './FormElement.css';
+import React from "react";
+import "./FormElement.css";
+import headerLogoPath from "../../images/header-logo.svg";
+import { Link } from 'react-router-dom';
+
 
 function FormElement(props) {
   return (
-    <section className={`form form__${props.name}`}>
-      <h3 className="form__title">{props.title}</h3>
-      <form 
-        onSubmit={props.onSubmit}
+    <>
+      <img
+        className="header__logo"
+        src={headerLogoPath}
+        alt="Логотип учетной записи"
+      />
+      <section className="form">
+        <h3 className="form__title">{props.title}</h3>
+        <form
+          onSubmit={props.onSubmit}
+          name="editValues"
+          method="post"
+          className={`form__body form__body-${props.name}`}
+          noValidate
+        >
+          {props.children}
+          <input
+            name="submit"
+            type="submit"
+            value={props.submit}
+            className="form__submit-button"
+          />
+        </form>
 
-        name="editValues" 
-        method="post" 
-        className={`form__body form__body-${props.name}`} 
-        noValidate>
-        {props.children}
-        <input name="submit" type="submit" value="Сохранить" className="form__submit-button" /> 
-      </form>
-    </section>
-    
+        <div className={`form__redirect form__redirect-${props.name}`}>
+          <p className="form__redirect-text">{props.suggestion}</p>
+
+          <Link to={props.link} className="form__redirect-link">
+            {props.action}
+          </Link>
+        </div>
+      </section>
+    </>
   );
 }
 
