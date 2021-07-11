@@ -26,7 +26,7 @@ function FormElement(props) {
             name="submit"
             type="submit"
             value={props.submit}
-            className="form__submit-button"
+            className={`form__submit form__submit-${props.name}`}
           />
         </form>
 

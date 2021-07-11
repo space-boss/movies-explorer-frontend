@@ -11,6 +11,7 @@ import SavedMovies from "../SavedMovies/SavedMovies";
 import Profile from "../Profile/Profile";
 import Register from "../Register/Register";
 import Login from "../Login/Login";
+import NotFoundPage from "../NotFoundPage/NotFoundPage";
 
 function App() {
   return (
@@ -34,6 +35,9 @@ function App() {
           </Route>
           <Route exact path="/signin">
             <Login />
+          </Route>
+          <Route path={'*'}>
+            <NotFoundPage />
           </Route>
         </Switch>
       </div>
