@@ -1,0 +1,26 @@
+.expand {
+  margin: 60px 0 80px 0;
+  display: block;
+  align-items: center;
+  text-align: center;
+}
+
+.expand__button {
+  width: 320px;
+  height: 36px;
+  background-color: #2f2f2f;
+  border-radius: 6px;
+  border: 0;
+  cursor: pointer;
+
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 15px;
+  color: #ffffff;
+  transition: opacity 0.4s;
+}
+
+.expand__button:hover {
+  opacity: 0.6;
+}

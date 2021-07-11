@@ -1,27 +1,27 @@
-import React from 'react';
-import './Main.css';
-import Promo from './Promo/Promo';
-import Header from '../Header/Header';
-import NavTab from './NavTab/NavTab';
-import AboutProject from './AboutProject/AboutProject';
-import Techs from './Techs/Techs';
-import AboutMe from './AboutMe/AboutMe';
-import Portfolio from './Portfolio/Portfolio';
-
-
+import React from "react";
+import "./Main.css";
+import Promo from "./Promo/Promo";
+import AboutProject from "./AboutProject/AboutProject";
+import Technologies from "./Techs/Techs";
+import AboutMe from "./AboutMe/AboutMe";
+import Portfolio from "./Portfolio/Portfolio";
+import Footer from "../Footer/Footer";
+import Header from "../Header/Header";
 
 function Main() {
   return (
-    <main className="content">
-      <title>Главная страница</title>
-      <Promo />
+    <>
       <Header />
-      <NavTab />
-      <AboutProject />
-      <Techs />
-      <AboutMe />
-      <Portfolio />
-    </main>
+      <main className="content">
+        <title>Главная страница</title>
+        <Promo />
+        <AboutProject />
+        <Technologies />
+        <AboutMe />
+        <Portfolio />
+      </main>
+      <Footer />
+    </>
   );
 }
 

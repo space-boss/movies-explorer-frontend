@@ -1,0 +1,37 @@
+.techs {
+	background: #272727;
+	padding: 100px 70px;
+}
+
+.techs__main {
+	margin-top: 90px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.techs__main-paragraph {
+	max-width: 460px;
+	margin-top: 26px;
+	text-align: center;
+}
+
+.techs__landing {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	margin-top: 100px;
+}
+.techs__landing-icon {
+	text-align: center;
+	width: 90px;
+	padding: 22px 0;
+	background: #303030;
+	border-radius: 10px;
+	letter-spacing: -0.04em;
+	font-size: 14px;
+}
+.techs__landing-icon:not(:last-of-type) {
+	margin-right: 10px;
+}

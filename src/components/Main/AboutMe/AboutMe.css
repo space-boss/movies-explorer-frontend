@@ -1,0 +1,50 @@
+.about-me {
+  width: 100%;
+  padding: 110px 70px 75px;
+}
+
+.about-me__info {
+  margin-top: 66px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.about-me__userpic {
+  width: 270px;
+  height: 327px;
+  object-fit: cover;
+}
+
+.about-me__bio {
+  width: 600px;
+  text-align: start;
+}
+
+.about-me__subtitle {
+  margin: 18px 0 26px 0;
+}
+
+.about-me__links {
+  display: flex;
+  flex-direction: row;
+  margin: 105px 0 0;
+  list-style-type: none;
+  padding: 0;
+}
+
+.about-me__link {
+  text-decoration: none;
+  color: #FFFFFF;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+  margin: 0 20px 0 0;
+  cursor: pointer;
+  transition: opacity 0.4s;
+}
+
+.about-me__link:hover {
+  opacity: 0.6;
+}
