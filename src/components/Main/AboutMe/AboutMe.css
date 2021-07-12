@@ -13,11 +13,12 @@
 .about-me__userpic {
   width: 270px;
   height: 327px;
-  object-fit: cover;
+  object-fit: cover;  
+  border-radius: 10px;
 }
 
 .about-me__bio {
-  width: 600px;
+  max-width: 600px;
   text-align: start;
 }
 
@@ -47,4 +48,29 @@
 
 .about-me__link:hover {
   opacity: 0.6;
+}
+
+
+@media screen and (max-width: 768px) {
+  .about-me {
+    padding: 90px 50px 65px;
+  }
+
+  .about-me__bio {
+    max-width: 348px;
+  }
+
+  .about-me__userpic {
+    width: 255px;
+    height: 307px;
+  }
+
+  .about-me__subtitle {
+    font-size: 12px;
+    margin: 8px 0 20px;
+  }
+
+  .about-me__links {
+    margin-top: 80px;
+  }
 }

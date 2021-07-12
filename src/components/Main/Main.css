@@ -36,3 +36,21 @@
   letter-spacing: -0.04em;
   margin: 0;
 }
+
+
+@media screen and (max-width: 1000px) {
+  .main__heading {
+    font-size: 40px;
+    line-height: 52px;
+  }
+
+  .main__text {
+    font-size: 12px;
+    line-height: 18px;
+  }
+
+  .main__heading-techs {
+    font-size: 50px;
+  }
+
+}

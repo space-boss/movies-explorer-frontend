@@ -8,7 +8,7 @@ function Technologies() {
       <h3 className="main__block-description">Технологии</h3>
 
       <div className="techs__main">
-        <h2 className="main__heading">7 технологий</h2>
+        <h2 className="main__heading main__heading-techs">7 технологий</h2>
         <p className="techs__main-paragraph main__text">
           На курсе веб-разработки мы освоили технологии, которые применили в
           дипломном проекте.

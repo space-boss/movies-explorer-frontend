@@ -46,3 +46,9 @@
   grid-column-start: 1;
   grid-column-end: 3;
 }
+
+@media screen and (max-width: 768px) {
+  .portfolio {
+    margin: 0 50px 50px;
+  }
+}

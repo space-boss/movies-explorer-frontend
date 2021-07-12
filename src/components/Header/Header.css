@@ -87,3 +87,8 @@
   font-weight: 500;
 }
 
+@media screen and (max-width: 768px) {
+  .header {
+    padding: 18px 30px;
+  }
+}
