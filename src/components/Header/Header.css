@@ -13,10 +13,6 @@
   height: 38px;
 }
 
-.header__links-main {
-  display: none;
-}
-
 .header__link {
   border-radius: 3px;
   display: inline-block;

@@ -1,17 +1,18 @@
 import React from "react";
 import "./FormElement.css";
 import headerLogoPath from "../../images/header-logo.svg";
-import { Link } from 'react-router-dom';
-
+import { Link } from "react-router-dom";
 
 function FormElement(props) {
   return (
     <>
-      <img
-        className="header__logo"
-        src={headerLogoPath}
-        alt="Логотип учетной записи"
-      />
+      <Link to="/">
+        <img
+          className="header__logo"
+          src={headerLogoPath}
+          alt="Логотип учетной записи"
+        />
+      </Link>
       <section className="form">
         <h3 className="form__title">{props.title}</h3>
         <form

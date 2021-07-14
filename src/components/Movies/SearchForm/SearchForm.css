@@ -39,3 +39,13 @@
   opacity: 0.6;
 }
 
+
+@media screen and (max-width: 768px) {
+  .search {
+    margin: 80px 30px 0;
+  }
+
+  .search__form {
+    padding-bottom: 40px;
+  }
+}
