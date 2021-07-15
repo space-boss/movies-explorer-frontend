@@ -48,7 +48,7 @@
   color: #FFFFFF;
   padding: 10px 10px 0 0;
   font-style: normal;
-  font-weight: 400;
+  font-weight: normal;
   font-size: 13px;
   line-height: 18px;
   text-decoration: none;
@@ -81,6 +81,17 @@
 
 .header__link-movies_active {
   font-weight: 500;
+}
+
+.header__burger-button {
+  align-self: center;
+  width: 44px;
+  height: 44px;
+  border: none;
+  margin: 0;
+  padding: 0;
+  background-image: url(../../images/sandwich-button.svg);
+  background-color: transparent;
 }
 
 @media screen and (max-width: 768px) {

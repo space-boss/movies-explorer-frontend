@@ -10,7 +10,7 @@ import Header from "../Header/Header";
 function Movies() {
   return (
     <>
-    <Header />
+    <Header loggedIn />
     <main className="content">
       <title>Библиотека фильмов</title>
       <SearchForm />

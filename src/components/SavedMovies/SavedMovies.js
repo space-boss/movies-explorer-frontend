@@ -9,7 +9,7 @@ import Header from "../Header/Header";
 function SavedMovies() {
   return (
     <>
-    <Header />
+    <Header loggedIn />
     <main className="content">
       <title>Сохраненные фильмы</title>
       <SearchForm />

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   Route,
   Switch,
@@ -14,18 +14,21 @@ import Login from "../Login/Login";
 import NotFoundPage from "../NotFoundPage/NotFoundPage";
 
 function App() {
+
+  const [loggedIn, setLoggedIn] = useState(false);
+
   return (
     <BrowserRouter>
       <div className="page">
         <Switch>
           <Route exact path="/">
-            <Main />
+            <Main loggedIn={loggedIn} />
           </Route>
           <Route exact path="/movies">
-            <Movies />
+            <Movies loggedIn={loggedIn} />
           </Route>
           <Route exact path="/saved-movies">
-            <SavedMovies />
+            <SavedMovies loggedIn={loggedIn}/>
           </Route>
           <Route exact path="/profile">
             <Profile />
