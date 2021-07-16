@@ -4,3 +4,9 @@
   max-width: 396px;
   margin: 70px auto;
 }
+
+@media screen and (max-width: 768px) {
+  .register {
+    margin: 232px auto 0;
+  }
+}

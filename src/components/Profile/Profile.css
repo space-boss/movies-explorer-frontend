@@ -76,3 +76,13 @@
 .profile__link_exit {
   color: #EE3465;
 }
+
+@media screen and (max-width: 768px) {
+  .profile {
+    margin: 236px auto 0;
+  }
+
+  .profile__info-container {
+    margin: 80px 0 190px;
+  }
+}

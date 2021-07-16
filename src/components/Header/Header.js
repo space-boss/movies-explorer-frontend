@@ -13,11 +13,11 @@ function Header(props) {
   const savedMoviesLinkHighlight =
     location.pathname === "/saved-movies" ? "header__link-movies_active" : "";
 
-  const [isNavMenuOpen, setIsNavMenuOpen] = React.useState(false);
+  const [ isNavMenuOpen, setIsNavMenuOpen ] = React.useState(false);
 
   const { loggedIn } = props;
 
-  const isMobile = useMediaQuery({ query: '(max-width: 768px)', });
+  const isMobile = useMediaQuery({ query: "(max-width: 768px)" });
 
   function handleBurgerMenuClick() {
     setIsNavMenuOpen(!isNavMenuOpen);
@@ -33,23 +33,38 @@ function Header(props) {
         />{" "}
       </Link>
 
-      { loggedIn ? (
+      {loggedIn ? (
         <>
           {isMobile && (
-          <>
-          { !isNavMenuOpen && 
-          <button type="button" className="header__burger-button" onClick={handleBurgerMenuClick} /> }
-           <Navigation isOpen={isNavMenuOpen} onClose={handleBurgerMenuClick} />
-          </>)}
+            <>
+              {!isNavMenuOpen && (
+                <button
+                  type="button"
+                  className="header__burger-button"
+                  onClick={handleBurgerMenuClick}
+                />
+              )}
+              <Navigation
+                isOpen={isNavMenuOpen}
+                onClose={handleBurgerMenuClick}
+              />
+            </>
+          )}
 
           {!isMobile && (
             <>
               <div className="header__nav-movies">
                 <nav className="header__links-movies">
-                  <Link to="/movies" className={`header__link-movies ${moviesLinkHighlight}`}>
+                  <Link
+                    to="/movies"
+                    className={`header__link-movies ${moviesLinkHighlight}`}
+                  >
                     Фильмы
                   </Link>
-                  <Link to="/saved-movies" className={`header__link-movies ${savedMoviesLinkHighlight}`}>
+                  <Link
+                    to="/saved-movies"
+                    className={`header__link-movies ${savedMoviesLinkHighlight}`}
+                  >
                     Сохраненные фильмы
                   </Link>
                 </nav>

@@ -14,21 +14,18 @@ import Login from "../Login/Login";
 import NotFoundPage from "../NotFoundPage/NotFoundPage";
 
 function App() {
-
-  const [loggedIn, setLoggedIn] = useState(false);
-
   return (
     <BrowserRouter>
       <div className="page">
         <Switch>
           <Route exact path="/">
-            <Main loggedIn={loggedIn} />
+            <Main />
           </Route>
           <Route exact path="/movies">
-            <Movies loggedIn={loggedIn} />
+            <Movies />
           </Route>
           <Route exact path="/saved-movies">
-            <SavedMovies loggedIn={loggedIn}/>
+            <SavedMovies/>
           </Route>
           <Route exact path="/profile">
             <Profile />

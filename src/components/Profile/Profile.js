@@ -5,7 +5,7 @@ import Header from "../Header/Header";
 function Profile() {
   return (
     <>
-      <Header />
+      <Header loggedIn/>
 
       <section className="profile">
         <h3 className="profile__title">Привет, Ирина</h3>
@@ -15,7 +15,6 @@ function Profile() {
             type="text"
             id="profile-name"
             name="username"
-            value="Ирина"
             placeholder="Имя"
             className="profile__info-text profile__info-text_value"
           />
@@ -25,7 +24,6 @@ function Profile() {
             type="text"
             id="profile-email"
             name="email"
-            value="mail@email.com"
             placeholder="Email "
             className="profile__info-text profile__info-text_value"
           />

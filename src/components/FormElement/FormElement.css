@@ -111,3 +111,26 @@
 .form__redirect-link:hover {
   opacity: 0.6;
 }
+
+.form__input_false {
+  color: #EE3465;
+}
+
+.form__input-error {
+  position: absolute;
+  width: 396px;
+
+  font-style: normal;
+  font-weight: normal;
+  font-size: 10px;
+  min-height: 12px;
+
+  line-height: 12px;
+  margin: 0;
+  color: #EE3465;
+  display: block;
+  box-sizing: border-box;
+  border: none;
+
+  transform: translateY(-150%);
+}

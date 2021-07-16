@@ -29,6 +29,7 @@
 }
 
 .notfound__link {
+  padding: 0;
   margin: 184px 0 60px;
   font-style: normal;
   font-weight: normal;
@@ -37,4 +38,10 @@
 
   color: #4285f4;
   text-decoration: none;
+}
+
+@media screen and (max-width: 768px) {
+  .notfound__title {
+    margin: 410px 0 0;
+  }
 }
