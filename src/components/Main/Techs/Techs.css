@@ -59,6 +59,16 @@
 	}
 }
 
+@media screen and (max-width: 650px) {
+	.techs__landing {
+		margin-top: 47px;
+		display: grid;
+		grid-template-columns: 1fr 1fr 1fr;
+		grid-template-rows: repeat(auto-fill, 57px);
+		grid-gap: 10px;
+	}
+}
+
 @media screen and (max-width: 320px) {
   .techs {
     padding: 60px 18px;
@@ -75,11 +85,7 @@
 	}
 
 	.techs__landing {
-		margin-top: 47px;
-		display: grid;
 		grid-template-columns: 1fr 1fr;
-		grid-template-rows: repeat(auto-fill, 57px);
-		grid-gap: 10px;
 	}
 
 	.techs__landing-icon:not(:last-of-type) {

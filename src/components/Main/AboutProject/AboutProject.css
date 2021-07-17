@@ -61,7 +61,18 @@
 	.project-about__progress {
 		margin-top: 85px;
 	}
-	
+}
+
+@media screen and (max-width: 500px) {
+
+	.project-about__progress-text {
+		font-size: 11px;
+		line-height: 13px;
+	}
+
+	.project-about__progress {
+		grid-template-columns: fit-content 4fr;
+	}
 }
 
 @media screen and (max-width: 320px) {

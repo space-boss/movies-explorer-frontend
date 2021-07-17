@@ -60,25 +60,38 @@
   }
 }
 
-
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 500px) {
   .promo {
-    height: 586px;
+    height: 650px;
     margin: 15px 14px 0;
   }
 
   .promo__title {
     max-width: 292px;
-    margin-top: 220px;
+    margin-top: 120px;
   }
 
   .promo__links {
-    margin-top: 212px;
+    margin-top: 150px;
   }
 
   .promo__link {
     font-size: 10px;
     line-height: 16px;
     padding: 5px 15px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .promo {
+    height: 586px;
+  }
+
+  .promo__title {
+    margin-top: 220px;
+  }
+
+  .promo__links {
+    margin-top: 212px;
   }
 }

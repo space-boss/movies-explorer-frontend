@@ -88,7 +88,7 @@
   }
 }
 
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 470px) {
   .profile {
     max-width: 260px;
     margin: 70px auto 0;
@@ -103,3 +103,10 @@
     line-height: 15px;
   }
 }
+
+  @media screen and (max-width: 319px) {
+    .profile {
+      max-width: 150px;
+      margin: 70px auto 0;
+    }
+} 

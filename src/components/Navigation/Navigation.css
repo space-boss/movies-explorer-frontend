@@ -108,7 +108,7 @@
 }
 
 
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 400px) {
   .nav__menu-area {
     width: 100%;
   }
