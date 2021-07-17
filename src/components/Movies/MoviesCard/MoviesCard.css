@@ -77,3 +77,28 @@
   opacity: 0.6;
 }
 
+@media screen and (max-width: 320px) {
+  .movie {
+    width: 300px;
+    grid-template-rows: 46px 168px 57px;
+    height: fit-content;
+    margin-bottom: 16px;
+  }
+
+  .movie__title {
+    font-size: 12px;
+    line-height: 18px;
+    margin: 10px 0 0 15px;
+  }
+
+  .movie__duration {
+    font-size: 10px;
+    line-height: 18px;
+    margin: 10px 10px 0 0;
+  }
+
+  .movie__pic {
+    height: 168px;
+  }
+
+}

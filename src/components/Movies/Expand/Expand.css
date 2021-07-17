@@ -24,3 +24,14 @@
 .expand__button:hover {
   opacity: 0.6;
 }
+
+@media screen and (max-width: 320px) {
+  .expand {
+    margin: 50px 0 100px 0;
+  }
+  
+  .expand__button {
+    width: 240px;
+  }
+}
+

@@ -15,21 +15,27 @@ function Login() {
         link="/signup"
         action="Регистрация"
       >
-        <h4 className="form__input-label">Имя</h4>
-        <input
-          type="text"
-          id="login-name"
-          name="username"
-          placeholder="Имя"
-          className="form__input"
-        />
         <h4 className="form__input-label">Email</h4>
         <input
-          type="text"
-          id="login-email"
-          name="useremail"
+          type="email"
+          id="register-email"
+          name="newuseremail"
           placeholder="Email"
           className="form__input"
+          required 
+          minlength="2" 
+          maxlength="40"
+        />
+        <h4 className="form__input-label">Пароль</h4>
+        <input
+          type="password"
+          id="register-password"
+          name="newuserpassword"
+          placeholder="Пароль"
+          className="form__input form__input_false"
+          required 
+          minLength="8"
+          maxLength="40"
         />
       </FormElement>
     </section>
