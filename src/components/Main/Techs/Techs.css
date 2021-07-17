@@ -58,3 +58,32 @@
 		padding: 21px 0;
 	}
 }
+
+@media screen and (max-width: 320px) {
+  .techs {
+    padding: 60px 18px;
+  }
+
+	.techs__main {
+		margin-top: 60px;
+	}
+
+	.techs__main-paragraph {
+		max-width: 292px;
+		margin-top: 26px;
+		text-align: center;
+	}
+
+	.techs__landing {
+		margin-top: 47px;
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		grid-template-rows: repeat(auto-fill, 57px);
+		grid-gap: 10px;
+	}
+
+	.techs__landing-icon:not(:last-of-type) {
+		margin-right: 0px;
+	}
+
+}

@@ -63,3 +63,42 @@
 	}
 	
 }
+
+@media screen and (max-width: 320px) {
+  .project-about {
+		padding: 70px 18px;
+	}
+
+	.project-about__description {
+		display: flex;
+		flex-direction: column;
+	}
+
+	.project-about__subtitle{
+		font-size: 18px;
+		line-height: 22px;
+		padding-top: 0;
+	}
+
+	.project-about__paragraph:first-of-type {
+		margin-top: 60px;
+	}
+
+	.project-about__paragraph {
+		margin-top: 40px;
+	}
+	
+	.project-about__text {
+		margin-top: 16px;
+	}
+
+	.project-about__progress {
+		margin-top: 57px;
+		grid-template-columns: 1fr 2fr;
+	}
+
+	.project-about__progress-text {
+		font-size: 11px;
+		line-height: 13px;
+	}
+}

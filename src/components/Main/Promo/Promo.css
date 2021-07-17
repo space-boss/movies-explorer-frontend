@@ -59,3 +59,26 @@
     margin-top: 310px;
   }
 }
+
+
+@media screen and (max-width: 320px) {
+  .promo {
+    height: 586px;
+    margin: 15px 14px 0;
+  }
+
+  .promo__title {
+    max-width: 292px;
+    margin-top: 220px;
+  }
+
+  .promo__links {
+    margin-top: 212px;
+  }
+
+  .promo__link {
+    font-size: 10px;
+    line-height: 16px;
+    padding: 5px 15px;
+  }
+}
