@@ -23,8 +23,8 @@ function Login() {
           placeholder="Email"
           className="form__input"
           required 
-          minlength="2" 
-          maxlength="40"
+          minLength="2" 
+          maxLength="40"
         />
         <h4 className="form__input-label">Пароль</h4>
         <input
