@@ -24,8 +24,8 @@ function Register() {
           placeholder="Имя"
           className="form__input"
           required 
-          minlength="2" 
-          maxlength="40"
+          minLength="2" 
+          maxLength="40"
         />
         <span id="form-username-error" className="form__input-error"></span>
         <h4 className="form__input-label">Email</h4>
@@ -36,8 +36,8 @@ function Register() {
           placeholder="Email"
           className="form__input"
           required 
-          minlength="2" 
-          maxlength="40"
+          minLength="2" 
+          maxLength="40"
         />
         <span  id="form-email-error" className="form__input-error"></span>
         <h4 className="form__input-label">Пароль</h4>
