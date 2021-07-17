@@ -11,7 +11,7 @@ import Header from "../Header/Header";
 function Main() {
   return (
     <>
-      <Header />
+      <Header loggedIn={false}/>
       <main className="content">
         <title>Главная страница</title>
         <Promo />

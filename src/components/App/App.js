@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   Route,
   Switch,
@@ -25,7 +25,7 @@ function App() {
             <Movies />
           </Route>
           <Route exact path="/saved-movies">
-            <SavedMovies />
+            <SavedMovies/>
           </Route>
           <Route exact path="/profile">
             <Profile />

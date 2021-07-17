@@ -101,7 +101,7 @@
   line-height: 17px;
   text-align: center;
 
-  color: #4285F4;
+  color: #4285f4;
   text-decoration: none;
 
   cursor: pointer;
@@ -111,3 +111,48 @@
 .form__redirect-link:hover {
   opacity: 0.6;
 }
+
+.form__input_false {
+  color: #ee3465;
+}
+
+.form__input-error {
+  position: absolute;
+  width: 396px;
+
+  font-style: normal;
+  font-weight: normal;
+  font-size: 10px;
+  min-height: 12px;
+
+  line-height: 12px;
+  margin: 0;
+  color: #ee3465;
+  display: block;
+  box-sizing: border-box;
+  border: none;
+
+  transform: translateY(-150%);
+}
+
+@media screen and (max-width: 470px) {
+  .form__title {
+    margin: 45px 0 80px;
+    text-align: center;
+  }
+
+  .form__submit {
+    margin: 215px 0 16px;
+  }
+
+  .form__redirect-text {
+    font-size: 12px;
+    line-height: 15px;
+  }
+
+  .form__redirect-link {
+    font-size: 12px;
+    line-height: 15px;
+  }
+}
+

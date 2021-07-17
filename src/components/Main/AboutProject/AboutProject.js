@@ -1,5 +1,5 @@
-import React from "react";
-import "./AboutProject.css";
+import React from 'react';
+import './AboutProject.css';
 import '../Main.css';
 
 function AboutProject() {

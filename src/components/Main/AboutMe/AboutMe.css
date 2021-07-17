@@ -11,13 +11,15 @@
 }
 
 .about-me__userpic {
+  margin-left: 270px;
   width: 270px;
   height: 327px;
-  object-fit: cover;
+  object-fit: cover;  
+  border-radius: 10px;
 }
 
 .about-me__bio {
-  width: 600px;
+  max-width: 600px;
   text-align: start;
 }
 
@@ -47,4 +49,74 @@
 
 .about-me__link:hover {
   opacity: 0.6;
+}
+
+@media screen and (max-width: 1084px) {
+
+  .about-me__userpic {
+    margin-left:
+  }
+}
+
+
+@media screen and (max-width: 768px) {
+  .about-me {
+    padding: 90px 50px 65px;
+  }
+
+  .about-me__bio {
+    max-width: 348px;
+  }
+
+  .about-me__userpic {
+    width: 255px;
+    height: 307px;
+    margin-left: 50px;
+  }
+
+  .about-me__subtitle {
+    font-size: 12px;
+    margin: 8px 0 20px;
+  }
+
+  .about-me__links {
+    margin-top: 80px;
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .about-me__info {
+    flex-direction: column-reverse;
+  }
+
+  .about-me__userpic {
+    width: 255px;
+    height: 307px;
+    margin-left: 0;
+  }
+
+  .about-me__bio {
+    margin-top: 40px;
+  }
+
+}
+
+@media screen and (max-width: 320px) {
+  .about-me {
+    padding: 85px 14px 50px;
+  }
+
+  .about-me__info {
+    flex-direction: column-reverse;
+  }
+
+  .about-me__userpic {
+    width: 100%;
+    height: 352px;
+  }
+
+  .about-me__links {
+    margin-top: 40px;
+  }
+
 }

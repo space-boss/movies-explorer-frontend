@@ -2,6 +2,7 @@
   max-width: 410px;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   margin: 74px auto 0;
 }
 
@@ -76,3 +77,36 @@
 .profile__link_exit {
   color: #EE3465;
 }
+
+@media screen and (max-width: 768px) {
+  .profile {
+    margin: 236px auto 0;
+  }
+
+  .profile__info-container {
+    margin: 80px 0 190px;
+  }
+}
+
+@media screen and (max-width: 470px) {
+  .profile {
+    max-width: 260px;
+    margin: 70px auto 0;
+  }
+
+  .profile__info-container {
+    margin: 60px 0 365px;
+  }
+
+  .profile__link {
+    font-size: 12px;
+    line-height: 15px;
+  }
+}
+
+  @media screen and (max-width: 319px) {
+    .profile {
+      max-width: 150px;
+      margin: 70px auto 0;
+    }
+} 

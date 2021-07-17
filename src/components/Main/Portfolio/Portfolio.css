@@ -46,3 +46,29 @@
   grid-column-start: 1;
   grid-column-end: 3;
 }
+
+@media screen and (max-width: 768px) {
+  .portfolio {
+    margin: 0 50px 50px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .portfolio {
+    margin: 0 14px 70px;
+  }
+
+  .portfolio__title {
+    margin: 25px 0 15px;
+  }
+
+  .portfolio__link {
+    font-size: 18px;
+    line-height: 28px;
+  }
+
+  .portfolio__link:nth-child(3n+2) {
+    text-align: center;
+    padding-left: 10px;
+  }
+}

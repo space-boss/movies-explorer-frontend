@@ -5,12 +5,8 @@
 
 .project-about__description {
 	display: grid;
-	grid-gap: 2rem;
-	grid-template-columns: 1fr 1fr;
-}
-
-.project-about__paragraph {
-	width: 550px;
+	grid-gap: 40px;
+	grid-template-columns: repeat(2, calc(100%/2 - 40px));
 }
 
 .project-about__subtitle {
@@ -49,4 +45,71 @@
 .project-about__progress-text_bar-unchecked {
 	background-color: #303030;
 	color: #FFFFFF;
+}
+
+
+@media screen and (max-width: 780px) {
+  .project-about {
+		padding: 90px 50px;
+	}
+
+	.project-about__description {
+		grid-gap: 20px;
+		grid-template-columns: repeat(2, calc(100%/2 - 20px));
+	}
+
+	.project-about__progress {
+		margin-top: 85px;
+	}
+}
+
+@media screen and (max-width: 500px) {
+
+	.project-about__progress-text {
+		font-size: 11px;
+		line-height: 13px;
+	}
+
+	.project-about__progress {
+		grid-template-columns: fit-content 4fr;
+	}
+}
+
+@media screen and (max-width: 320px) {
+  .project-about {
+		padding: 70px 18px;
+	}
+
+	.project-about__description {
+		display: flex;
+		flex-direction: column;
+	}
+
+	.project-about__subtitle{
+		font-size: 18px;
+		line-height: 22px;
+		padding-top: 0;
+	}
+
+	.project-about__paragraph:first-of-type {
+		margin-top: 60px;
+	}
+
+	.project-about__paragraph {
+		margin-top: 40px;
+	}
+	
+	.project-about__text {
+		margin-top: 16px;
+	}
+
+	.project-about__progress {
+		margin-top: 57px;
+		grid-template-columns: 1fr 2fr;
+	}
+
+	.project-about__progress-text {
+		font-size: 11px;
+		line-height: 13px;
+	}
 }
