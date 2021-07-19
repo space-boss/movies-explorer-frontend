@@ -45,7 +45,7 @@
   color: #8b8b8b;
 }
 
-.movie__save-button {
+.movie__button {
   cursor: pointer;
   grid-area: saved;
   justify-self: center;
@@ -68,12 +68,35 @@
   transition: opacity 0.4s;
 }
 
-.movie__save-button_pressed {
+.movie__delete-button {
+  cursor: pointer;
+  grid-area: saved;
+  justify-self: center;
+  align-self: center;
+  color: transparent;
+  border: none;
+  border-radius: 20px;
+  background: #313131;
+
+  width: 100px;
+  height: 29px;
+  padding: 9px 15px;
+  overflow: hidden;
+  transition: opacity 0.4s;
+
+  background-image: url(../../../images/delete-button.svg);
+}
+
+.movie__delete-button:hover {
+  opacity: 0.6;
+}
+
+.movie__button_pressed {
   background-image: url(../../../images/save-button_checked.svg);
   color: transparent;
 }
 
-.movie__save-button:hover {
+.movie__button:hover {
   opacity: 0.6;
 }
 

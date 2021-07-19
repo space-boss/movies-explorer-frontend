@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useLocation } from "react-router-dom";
 import "./MoviesCard.css";
 
 function MoviesCard({movie}) {
@@ -8,16 +9,25 @@ function MoviesCard({movie}) {
     setSaved(!isSaved);
   };
 
+  const location = useLocation();
+
+  const movieDeleteButton =
+    location.pathname === "/saved-movies" ? "movie__delete-button" : "";
+
+  const movieSaveButton = 
+    location.pathname === "/movies" ? "movie__button" : "";
+
+
   return (
     <div className="movie">
       <p className="movie__title">{movie.nameRu}</p>
       <p className="movie__duration">{movie.duration}</p>
       <img className="movie__pic" alt={movie.nameRu} src={movie.image} />
       <button
-        className={`movie__save-button ${
-          isSaved ? "movie__save-button_pressed" : ""
+        className={`${movieDeleteButton} ${movieSaveButton} ${
+          isSaved ? "movie__button_pressed" : ""
         }`}
-        onClick={toggleSaveButton}
+        onClick={movieSaveButton ? toggleSaveButton : ""}
         type="button"
       >
         Сохранить

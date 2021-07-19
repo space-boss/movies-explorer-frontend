@@ -4,6 +4,7 @@
 }
 
 .about-me__info {
+  width: 100%;
   margin-top: 66px;
   display: flex;
   flex-direction: row;
@@ -11,11 +12,11 @@
 }
 
 .about-me__userpic {
-  margin-left: 270px;
   width: 270px;
   height: 327px;
   object-fit: cover;  
   border-radius: 10px;
+  margin-left: 50px;
 }
 
 .about-me__bio {
@@ -50,14 +51,6 @@
 .about-me__link:hover {
   opacity: 0.6;
 }
-
-@media screen and (max-width: 1084px) {
-
-  .about-me__userpic {
-    margin-left:
-  }
-}
-
 
 @media screen and (max-width: 768px) {
   .about-me {
