@@ -1,8 +1,37 @@
-import React from "react";
+import React, { useState } from "react";
 import "./SearchForm.css";
 import FilterCheckbox from '../FilterCheckbox/FilterCheckbox';
 
-function SearchForm() {
+function SearchForm(props) {
+
+  const [searchQuery, setSearchQuery] = useState('');
+  const [searchOutput, setsearchOutput] = useState(false);
+
+
+  function handleSearch(evt) {
+    setSearchQuery(e.target.value);
+  }
+
+  function handleSlider() {
+    setsearchOutput(!searchOutput)
+  };
+
+  function handleFilterCondition (movies, value) {
+
+  }
+
+
+  function filterMovies(movies, value) {
+    if (searchOutput) {
+      return movies.filter((movie) => movie.duration <= 40 && handleSlider(movie, value))
+    } else {
+      return movies.filter((movie) => )
+    }
+  }
+
+
+
+
   return (
     <section className="search">
       <form className="search__form">
