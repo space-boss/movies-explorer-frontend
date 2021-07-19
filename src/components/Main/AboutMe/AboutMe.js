@@ -9,7 +9,7 @@ function AboutMe() {
       <h3 className="main__block-description">Студентка</h3>
       <div className="about-me__info">
         <div class="about-me__bio">
-          <h2 className=" main__heading">Ирина</h2>
+          <h2 className="main__heading">Ирина</h2>
           <h4 className="about-me__subtitle main__text-subtitle">Фронтенд-разработчик, 30 лет</h4>
           <p className="main__text">Родилась и выросла во Владимире, но в 2014 году переехала в Гамбург учиться градостроительству.
           Работаю по специальности, но хочу сменить сферу деятельности, чтобы быстрее видеть результаты своей работы, поэтому пошла на курсы веб-разработки. Увлекаюсь фотографией, разбираюсь в крафтовом пиве и сериалах.</p>
