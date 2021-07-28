@@ -7,6 +7,10 @@ class Api {
     };
   }
 
+  setToken() {
+    this._headers.Authorization = `Bearer ${localStorage.getItem('token')}`;
+  }
+
   _checkResponse(res) {
     if (res.ok) {
       return res.json();

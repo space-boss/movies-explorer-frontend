@@ -5,19 +5,19 @@ import FilterCheckbox from '../FilterCheckbox/FilterCheckbox';
 function SearchForm(props) {
 
   const [searchQuery, setSearchQuery] = useState('');
-  const [searchOutput, setsearchOutput] = useState(false);
+  const [searchOutput, setSearchOutput] = useState(false);
 
 
   function handleSearch(evt) {
-    setSearchQuery(e.target.value);
+    setSearchQuery(evt.target.value);
   }
 
   function handleSlider() {
-    setsearchOutput(!searchOutput)
+    setSearchOutput(!searchOutput)
   };
 
-  function handleFilterCondition (movies, value) {
-
+  function handleFilterValue (movies, search) {
+    return movies.nameRu.toLowerCase().includes(search.toLowerCase());
   }
 
 
@@ -25,17 +25,29 @@ function SearchForm(props) {
     if (searchOutput) {
       return movies.filter((movie) => movie.duration <= 40 && handleSlider(movie, value))
     } else {
-      return movies.filter((movie) => )
+      return movies.filter((movie) => handleFilterValue(movie, value));
     }
   }
 
+  function handleSubmit(evt) {
+    evt.preventDefault();
 
-
+    if (props.place === 'movies') {
+      const moviesArray = filterMovies(props.movie, searchQuery);
+      props.handleSearchMovies(moviesArray);
+    } else if (props.place === 'saved-movies') {
+      const savedMoviesArray = filterMovies (props.savedMovies, searchQuery);
+      props.handleSearchMovies(savedMoviesArray);
+    }
+  }
 
   return (
     <section className="search">
-      <form className="search__form">
+      <form 
+      className="search__form"
+      onSubmit={handleSubmit}>
         <input
+          onChange={handleSearch}
           className="search__input"
           id="search-input"
           name="search-input"
@@ -53,11 +65,12 @@ function SearchForm(props) {
         />
       </form>
 
-      <FilterCheckbox />
+      <FilterCheckbox 
+      onChange={handleSlider}/>
 
 
     </section>
-  );
+  );   
 }
 
 export default SearchForm;
