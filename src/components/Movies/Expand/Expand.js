@@ -1,12 +1,19 @@
 import React from "react";
 import "./Expand.css";
 
-function MoviesCard() {
+function Expand() {
+
+  const [moviesCards, setMoviesCards] = React.useState();
+
+  function handleMovies() {
+    setMoviesCards(moviesCards);
+  }  
+
   return (
     <div className="expand">
-      <button type="button" className="expand__button">Ещё</button>
+      <button onClick={handleMovies} type="button" className="expand__button">Ещё</button>
     </div>
   );
 }
 
-export default MoviesCard;
+export default Expand;

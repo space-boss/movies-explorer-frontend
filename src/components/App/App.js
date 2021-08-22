@@ -23,7 +23,7 @@ function App() {
   const [isRegistered, setIsRegistered] = React.useState(false);
   const [email, setEmail] = React.useState("");
 
-  const [movies, setMovies] = React.useState([]);
+  //const [movies, setMovies] = React.useState([]);
   const [savedMovies, setSavedMovies] = React.useState([]);
   const localStorageMovies = JSON.parse(localStorage.getItem("movies"));
 
@@ -37,11 +37,9 @@ function App() {
     }
   }, [isLoggedIn, history]);
 
-
   useEffect(() => {
     tokenCheck();
   });
-
 
   useEffect(() => {
     if (isRegistered) {
@@ -49,17 +47,16 @@ function App() {
     }
   }, [isRegistered, history]);
 
-
   const handleLogin = ({ email, password }) => {
     return authApi
       .authorize(email, password)
       .then((data) => {
         if (!data) throw new Error("Неверные имя пользователя или пароль");
         if (data.token) {
-          localStorage.setItem('token', data.token);
+          localStorage.setItem("token", data.token);
           apiConfig.setToken();
           setLoggedIn(true);
-          history.push('/');
+          history.push("/");
         }
       })
       .catch((err) => {
@@ -81,10 +78,9 @@ function App() {
       });
   };
 
-
   const tokenCheck = () => {
-    if (localStorage.getItem('token')) {
-      let token = localStorage.getItem('token');
+    if (localStorage.getItem("token")) {
+      let token = localStorage.getItem("token");
       authApi.getContent(token).then(({ email }) => {
         if (email) {
           setLoggedIn(true);
@@ -95,7 +91,7 @@ function App() {
   };
 
   function signOut() {
-    localStorage.removeItem('token');
+    localStorage.removeItem("token");
     setLoggedIn(false);
   }
 
@@ -119,10 +115,10 @@ function App() {
       <div className="page">
         <Switch>
           <Route exact path="/">
-            <Main isLoggedIn={isLoggedIn} movies={movies} />
+            <Main isLoggedIn={isLoggedIn} /*movies={movies}*/ />
           </Route>
-          <Route exact path="/movies">
-            <Movies />
+          <Route exact path="/movies" /*movies={movies}*/>
+            <Movies isLoggedIn={isLoggedIn} />
           </Route>
           <Route exact path="/saved-movies">
             <SavedMovies />
@@ -146,3 +142,4 @@ function App() {
 }
 
 export default App;
+

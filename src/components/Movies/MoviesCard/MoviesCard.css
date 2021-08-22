@@ -14,7 +14,7 @@
   grid-area: pic;
   width: 100%;
   height: 200px;
-  object-fit: contain;
+  object-fit: cover;
 }
 
 .movie__title {

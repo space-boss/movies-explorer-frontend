@@ -1,17 +1,9 @@
 class AuthApi {
-<<<<<<< HEAD
   constructor(config) {
     this._url = config.url;
     this._headers = {
       "Accept": "application/json",
       "Content-Type": "application/json",
-=======
-  constructor(config){
-    this._url = config.url;
-    this._headers = {
-      "Accept": "application/json",
-      "Content-Type": "application/json", 
->>>>>>> 339aaf11d295e72fbe14944e011e631846eeeecf
     };
   }
 

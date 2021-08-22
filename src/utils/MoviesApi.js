@@ -13,17 +13,17 @@ class MovieApi {
     return Promise.reject(`Ошибка ${res.status}`);
   }
 
-  getMovies = () => {
+  getMovies() {
+    console.log("we were here");
     return fetch(`${this._url}/beatfilm-movies`, {
       method: "GET",
-      'credentials': 'include',
+      //'credentials': 'include',
       headers: this._headers,
     }).then(this._checkResponse)
-    .then((movies) => movies);
   }
 }
 
 export const movieApiConfig = new MovieApi({
-  url: "https://api.nomoreparties.co/",
+  url: "https://api.nomoreparties.co",
 });
 

@@ -20,7 +20,6 @@ function SearchForm(props) {
     return movies.nameRu.toLowerCase().includes(search.toLowerCase());
   }
 
-
   function filterMovies(movies, value) {
     if (searchOutput) {
       return movies.filter((movie) => movie.duration <= 40 && handleSlider(movie, value))
