@@ -4,47 +4,41 @@ import FilterCheckbox from '../FilterCheckbox/FilterCheckbox';
 
 function SearchForm(props) {
 
-  const [searchQuery, setSearchQuery] = useState('');
-  const [searchOutput, setSearchOutput] = useState(false);
-
+  const [searchValue, setSearchValue] = useState('');
+  const [moviesFilter, setMoviesFilter] = useState(false);
 
   function handleSearch(evt) {
-    setSearchQuery(evt.target.value);
+    setSearchValue(evt.target.value);
   }
 
-  function handleSlider() {
-    setSearchOutput(!searchOutput)
-  };
+  function handleCheckbox() {
+    setMoviesFilter(!moviesFilter);
+  }
 
-  function handleFilterValue (movies, search) {
-    return movies.nameRu.toLowerCase().includes(search.toLowerCase());
+  function handleSearchQuery(movies, search) {
+    console.log(search.toLowerCase());
+    return (movies.nameRU.toLowerCase().includes(search.toLowerCase()))
   }
 
   function filterMovies(movies, value) {
-    if (searchOutput) {
-      return movies.filter((movie) => movie.duration <= 40 && handleSlider(movie, value))
-    } else {
-      return movies.filter((movie) => handleFilterValue(movie, value));
-    }
+    return movies.filter((movie) => handleSearchQuery(movie, value));
   }
 
   function handleSubmit(evt) {
     evt.preventDefault();
-
-    if (props.place === 'movies') {
-      const moviesArray = filterMovies(props.movie, searchQuery);
-      props.handleSearchMovies(moviesArray);
-    } else if (props.place === 'saved-movies') {
-      const savedMoviesArray = filterMovies (props.savedMovies, searchQuery);
-      props.handleSearchMovies(savedMoviesArray);
-    }
+    const filteredMovies = filterMovies(props.movies, searchValue);
+    console.log(filteredMovies);
+    props.handleSearchMovies(filteredMovies);
+    return;
   }
 
+  
   return (
     <section className="search">
       <form 
       className="search__form"
-      onSubmit={handleSubmit}>
+      onSubmit={handleSubmit}
+      >
         <input
           onChange={handleSearch}
           className="search__input"
@@ -52,7 +46,7 @@ function SearchForm(props) {
           name="search-input"
           placeholder="Фильм"
           required
-          minLength="2"
+          minLength="1"
           maxLength="40"
         />
 
@@ -65,7 +59,8 @@ function SearchForm(props) {
       </form>
 
       <FilterCheckbox 
-      onChange={handleSlider}/>
+        onChange={handleCheckbox}
+      />
 
 
     </section>

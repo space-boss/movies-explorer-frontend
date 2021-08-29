@@ -15,17 +15,18 @@ import Register from "../Register/Register";
 import Login from "../Login/Login";
 import NotFoundPage from "../NotFoundPage/NotFoundPage";
 import { apiConfig } from "../../utils/MainApi";
-import { movieApiConfig } from "../../utils/MoviesApi";
+// import { movieApiConfig } from "../../utils/MoviesApi";
 import { authApi } from "../../utils/auth";
 
 function App() {
   const [isLoggedIn, setLoggedIn] = React.useState(false);
   const [isRegistered, setIsRegistered] = React.useState(false);
+  const [isLoading, setIsLoading] = React.useState(false);
   const [email, setEmail] = React.useState("");
 
   //const [movies, setMovies] = React.useState([]);
   const [savedMovies, setSavedMovies] = React.useState([]);
-  const localStorageMovies = JSON.parse(localStorage.getItem("movies"));
+  //const localStorageMovies = JSON.parse(localStorage.getItem("movies"));
 
   const [movieSearchList, setMovieSearchList] = React.useState([]);
   const [savedMovieSearchList, setSavedMovieSearchList] = React.useState([]);
@@ -37,15 +38,18 @@ function App() {
     }
   }, [isLoggedIn, history]);
 
+
   useEffect(() => {
     tokenCheck();
   });
+
 
   useEffect(() => {
     if (isRegistered) {
       history.push("/signin");
     }
   }, [isRegistered, history]);
+
 
   const handleLogin = ({ email, password }) => {
     return authApi
@@ -95,6 +99,11 @@ function App() {
     setLoggedIn(false);
   }
 
+  function handleSearchMovies(movies) {
+    console.log(movies);
+    setMovieSearchList(movies)
+  }
+
   /*React.useEffect(() => {
     if (!isLoggedIn) {
       return;
@@ -118,7 +127,11 @@ function App() {
             <Main isLoggedIn={isLoggedIn} /*movies={movies}*/ />
           </Route>
           <Route exact path="/movies" /*movies={movies}*/>
-            <Movies isLoggedIn={isLoggedIn} />
+            <Movies isLoggedIn={isLoggedIn} 
+            handleSearchMovies={handleSearchMovies} 
+            movieSearchList={movieSearchList}
+            //localStorageMovies={localStorageMovies} 
+            />
           </Route>
           <Route exact path="/saved-movies">
             <SavedMovies />

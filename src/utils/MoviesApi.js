@@ -14,7 +14,6 @@ class MovieApi {
   }
 
   getMovies() {
-    console.log("we were here");
     return fetch(`${this._url}/beatfilm-movies`, {
       method: "GET",
       //'credentials': 'include',
