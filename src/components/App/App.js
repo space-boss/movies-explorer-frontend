@@ -143,7 +143,7 @@ function App() {
 
 
   function handleUpdateUser(user) {
-    if (user.name !== "" && user.about !== "") {
+    if (user.name !== "" && user.email !== "") {
       apiConfig
         .updateProfile(user)
         .then((res) => {
@@ -225,7 +225,7 @@ function App() {
             component={Profile}
             isLoggedIn={isLoggedIn} 
             onClick={signOut}
-            onUpdateUser={handleUpdateUser}
+            handleUpdateUser={handleUpdateUser}
             openInfoTooltip={openInfoTooltip}
           />
 
