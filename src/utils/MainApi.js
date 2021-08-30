@@ -67,8 +67,8 @@ class Api {
       //mode: "no-cors",
       headers: this._headers,
     })
-      .then(this._checkResponse)
-      .then((data) => data);
+      .then(this._checkResponse); 
+      //.then((data) => data);
   }
 
   updateProfile(data) {
@@ -77,10 +77,7 @@ class Api {
       credentials: "omit",
       //mode: "no-cors",
       headers: this._headers,
-      body: JSON.stringify({
-        name: data.name,
-        email: data.email,
-      }),
+      body: JSON.stringify(data),
     }).then(this._checkResponse);
   }
 }

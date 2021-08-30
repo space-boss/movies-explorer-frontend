@@ -26,7 +26,7 @@ function App() {
   const [isLoading, setIsLoading] = React.useState(false);
   const [isInfoTooltipOpen, setInfoTooltipOpen] = React.useState(false);
 
-  const [currentUser, setCurrentUser] = React.useState({});
+  const [currentUser, setCurrentUser] = React.useState({name: '', email: ''});
   const [infoTooltipMessage, setInfoTooltipMessage] = React.useState("");
   const [email, setEmail] = React.useState("");
   const [movies, setMovies] = React.useState([]);
@@ -37,7 +37,7 @@ function App() {
   const localStorageMovies = JSON.parse(localStorage.getItem("movies"));
 
   const path = useLocation().pathname;
-  
+
   const history = useHistory();
 
   React.useEffect(() => {
@@ -128,6 +128,20 @@ function App() {
     }
   };
 
+  React.useEffect(() => {
+    if (!isLoggedIn) {
+      return;
+    };
+    apiConfig.getUser()
+    .then((res) => {
+      setCurrentUser(res)
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+  }, [isLoggedIn]);
+
+
   function handleUpdateUser(user) {
     if (user.name !== "" && user.about !== "") {
       apiConfig
@@ -197,22 +211,23 @@ function App() {
             searchError={searchError}
           />
 
-          <ProtectedRoute path="/saved-movies">
-            <SavedMovies
-              isLoggedIn={isLoggedIn}
-              isLoading={isLoading}
-              savedMovies={savedMovies}
-            />
-          </ProtectedRoute>
+          <ProtectedRoute 
+            path="/saved-movies"
+            component={SavedMovies}
+            isLoggedIn={isLoggedIn}
+            isLoading={isLoading}
+            savedMovies={savedMovies}
+          />
 
-          <Route path="/profile">
-            <Profile 
-              isLoggedIn={isLoggedIn} 
-              handleSignOut={signOut}
-              onUpdateUser={handleUpdateUser}
-              openInfoTooltip={openInfoTooltip}
-              />
-          </Route>
+
+          <ProtectedRoute
+            path="/profile"
+            component={Profile}
+            isLoggedIn={isLoggedIn} 
+            onClick={signOut}
+            onUpdateUser={handleUpdateUser}
+            openInfoTooltip={openInfoTooltip}
+          />
 
           <Route path="/signup">
             <Register 
