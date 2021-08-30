@@ -17,7 +17,7 @@ class AuthApi {
   register(name, email, password) {
     return fetch(`${this._url}/signup`, {
       method: "POST",
-      //credentials: 'include',
+      credentials: "omit",
       headers: this._headers,
       body: JSON.stringify({ name, email, password }),
     })
@@ -31,7 +31,7 @@ class AuthApi {
   authorize(email, password) {
     return fetch(`${this._url}/signin`, {
       method: "POST",
-      /*credentials: "include",*/
+      credentials: "omit",
       headers: this._headers,
       body: JSON.stringify({ email, password }),
     }).then(this._checkResponse);
@@ -52,7 +52,7 @@ class AuthApi {
 export const logout = () => {
   return fetch(`${this._url}/users/signout`, {
     method: "POST",
-    credentials: "include",
+    credentials: "omit",
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",

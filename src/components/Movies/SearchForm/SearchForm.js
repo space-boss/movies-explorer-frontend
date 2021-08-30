@@ -16,7 +16,6 @@ function SearchForm(props) {
   }
 
   function handleSearchQuery(movies, search) {
-    console.log(search.toLowerCase());
     return (movies.nameRU.toLowerCase().includes(search.toLowerCase()))
   }
 
