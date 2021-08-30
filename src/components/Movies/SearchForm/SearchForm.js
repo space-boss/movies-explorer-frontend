@@ -26,7 +26,6 @@ function SearchForm(props) {
   function handleSubmit(evt) {
     evt.preventDefault();
     const filteredMovies = filterMovies(props.movies, searchValue);
-    console.log(filteredMovies);
     props.handleSearchMovies(filteredMovies);
     return;
   }

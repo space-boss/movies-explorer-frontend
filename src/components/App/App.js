@@ -27,7 +27,6 @@ function App() {
   const [isInfoTooltipOpen, setInfoTooltipOpen] = React.useState(false);
 
   const [currentUser, setCurrentUser] = React.useState({});
-  const [token, setToken] = React.useState("");
   const [infoTooltipMessage, setInfoTooltipMessage] = React.useState("");
   const [email, setEmail] = React.useState("");
   const [movies, setMovies] = React.useState([]);
@@ -38,11 +37,12 @@ function App() {
   const localStorageMovies = JSON.parse(localStorage.getItem("movies"));
 
   const path = useLocation().pathname;
+  
   const history = useHistory();
 
   React.useEffect(() => {
     if (isLoggedIn) {
-      history.push('/');
+      history.push('/movies');
     }
   }, [isLoggedIn, history]);
 
@@ -66,7 +66,7 @@ function App() {
   }, [isRegistered, history]);
 
 
-  useEffect(() => {
+  /*useEffect(() => {
     if (isLoggedIn) {
       Promise.all([apiConfig.getUser(token), apiConfig.getMovies(token)])
         .then(([userData, movies]) => {
@@ -76,19 +76,16 @@ function App() {
         })
         .catch((err) => console.log(err));
     }
-  }, [isLoggedIn, token]);
+  }, [isLoggedIn, token]); */
 
 
   const handleRegister = ({ name, email, password }) => {
     return authApi
       .register(name, email, password)
       .then((res) => {
-        console.log(res);
-        if (!res || res.statusCode === 400)
-          throw new Error("Что-то пошло не так");
+        if (!res || res.statusCode === 400) throw new Error("Что-то пошло не так");
         setIsRegistered(true);
-        setLoggedIn(true);
-        history.push("/movies");
+        setInfoTooltipOpen(true);
         return res;
       })
       .catch((err) => {
@@ -96,16 +93,20 @@ function App() {
       });
   };
 
+  function onRegisterPopup() {
+    setInfoTooltipOpen(true);
+  }
+
   const handleLogin = ({ email, password }) => {
     return authApi
       .authorize(email, password)
       .then((data) => {
+        if (!data) throw new Error('Неверные имя пользователя или пароль')
         if (data.token) {
-          console.log(data);
           localStorage.setItem("token", data.token);
           apiConfig.setToken();
           setLoggedIn(true);
-          history.push("/movies");
+          history.push("/movies")
         }
       })
       .catch((err) => {
@@ -184,16 +185,17 @@ function App() {
             <Main isLoggedIn={isLoggedIn} />
           </Route>
 
-          <ProtectedRoute path="/movies">
-            <Movies
-              movies={movies}
-              isLoggedIn={isLoggedIn}
-              isLoading={isLoading}
-              //onGetCards={getMovies}
-              handleSearchMovies={handleSearchMovies}
-              searchError={searchError}
-            />
-          </ProtectedRoute>
+          <ProtectedRoute 
+            path="/movies"
+            movies={movies}
+            isLoggedIn={isLoggedIn}
+            component = {Movies}
+            isLoading={isLoading}
+            movieSearchList={movieSearchList}
+            //onGetCards={getMovies}
+            handleSearchMovies={handleSearchMovies}
+            searchError={searchError}
+          />
 
           <ProtectedRoute path="/saved-movies">
             <SavedMovies
@@ -213,13 +215,16 @@ function App() {
           </Route>
 
           <Route path="/signup">
-            <Register onRegister={handleRegister} />
+            <Register 
+              onRegister={handleRegister}
+              onRegisterPopup={onRegisterPopup} />
           </Route>
 
           <Route path="/signin">
             <Login
               onLogin={handleLogin}
               openInfoTooltip={openInfoTooltip}
+              onRegisterPopup={onRegisterPopup}
             />
           </Route>
 
