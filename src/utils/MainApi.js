@@ -2,6 +2,7 @@ class Api {
   constructor(config) {
     this._url = config.url;
     this._headers = {
+      Authorization: `Bearer ${localStorage.getItem('token')}`,
       Accept: "application/json",
       "Content-Type": "application/json",
     };

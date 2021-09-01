@@ -21,6 +21,7 @@ function Movies(props) {
           searchError={props.searchError}
 
         />
+        {props.isLoading && <Preloader />}
         
         <MoviesCardList
           movies={props.movies}

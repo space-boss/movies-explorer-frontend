@@ -1,10 +1,5 @@
 import React, { useEffect } from "react";
-import {
-  Route,
-  Switch,
-  useHistory,
-  useLocation,
-} from "react-router-dom";
+import { Route, Switch, useHistory, useLocation } from "react-router-dom";
 import Main from "../Main/Main";
 import "./App.css";
 import Movies from "../Movies/Movies";
@@ -24,10 +19,11 @@ function App() {
   const [isLoggedIn, setLoggedIn] = React.useState(false);
   const [isRegistered, setIsRegistered] = React.useState(false);
   const [isLoading, setIsLoading] = React.useState(false);
+
+  const [currentUser, setCurrentUser] = React.useState({ name: "", email: "" });
+  const [infoTooltipMessage, setInfoTooltipMessage] = React.useState("");
   const [isInfoTooltipOpen, setInfoTooltipOpen] = React.useState(false);
 
-  const [currentUser, setCurrentUser] = React.useState({name: '', email: ''});
-  const [infoTooltipMessage, setInfoTooltipMessage] = React.useState("");
   const [email, setEmail] = React.useState("");
   const [movies, setMovies] = React.useState([]);
   const [savedMovies, setSavedMovies] = React.useState([]);
@@ -42,21 +38,15 @@ function App() {
 
   React.useEffect(() => {
     if (isLoggedIn) {
-      history.push('/movies');
+      history.push("/movies");
     }
   }, [isLoggedIn, history]);
+
 
   useEffect(() => {
     tokenCheck();
   });
 
-  const openInfoTooltip = () => {
-    setInfoTooltipOpen(true);
-  };
-
-  function closeInfoTooltip() {
-    setInfoTooltipOpen(false);
-  }
 
   useEffect(() => {
     setInfoTooltipOpen(false);
@@ -65,6 +55,69 @@ function App() {
     }
   }, [isRegistered, history]);
 
+
+  const handleLogin = ({ email, password }) => {
+    return authApi
+      .authorize(email, password)
+      .then((data) => {
+        if (!data) throw new Error("Неверные имя пользователя или пароль");
+        if (data.token) {
+          localStorage.setItem("token", data.token);
+          apiConfig.setToken();
+          setLoggedIn(true);
+          history.push("/movies");
+        }
+      })
+      .catch((err) => {
+        openInfoTooltip();
+        setInfoTooltipMessage("Что-то пошло не так. Попробуйте еще раз");
+        console.log(err);
+      });
+  };
+
+
+  const handleRegister = ({ name, email, password }) => {
+    return authApi
+      .register(name, email, password)
+      .then((res) => {
+        if (!res || res.statusCode === 400)
+          throw new Error("Что-то пошло не так");
+        setIsRegistered(true);
+        setInfoTooltipOpen(true);
+        return res;
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+
+  const tokenCheck = () => {
+    if (localStorage.getItem("token")) {
+      let token = localStorage.getItem("token");
+      authApi.getContent(token).then(({ email }) => {
+        if (email) {
+          setLoggedIn(true);
+          setEmail(email);
+        }
+      });
+    }
+  };
+
+
+  function signOut() {
+    localStorage.removeItem("token");
+    history.push("/");
+    setLoggedIn(false);
+  };
+
+  const openInfoTooltip = () => {
+    setInfoTooltipOpen(true);
+  };
+
+  function closeInfoTooltip() {
+    setInfoTooltipOpen(false);
+  };
 
   /*useEffect(() => {
     if (isLoggedIn) {
@@ -78,55 +131,9 @@ function App() {
     }
   }, [isLoggedIn, token]); */
 
-
-  const handleRegister = ({ name, email, password }) => {
-    return authApi
-      .register(name, email, password)
-      .then((res) => {
-        if (!res || res.statusCode === 400) throw new Error("Что-то пошло не так");
-        setIsRegistered(true);
-        setInfoTooltipOpen(true);
-        return res;
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
-
   function onRegisterPopup() {
     setInfoTooltipOpen(true);
   }
-
-  const handleLogin = ({ email, password }) => {
-    return authApi
-      .authorize(email, password)
-      .then((data) => {
-        if (!data) throw new Error('Неверные имя пользователя или пароль')
-        if (data.token) {
-          localStorage.setItem("token", data.token);
-          apiConfig.setToken();
-          setLoggedIn(true);
-          history.push("/movies")
-        }
-      })
-      .catch((err) => {
-        openInfoTooltip();
-        setInfoTooltipMessage("Что-то пошло не так. Попробуйте еще раз");
-        console.log(err);
-      });
-  };
-
-  const tokenCheck = () => {
-    if (localStorage.getItem("token")) {
-      let token = localStorage.getItem("token");
-      authApi.getContent(token).then(({ email }) => {
-        if (email) {
-          setLoggedIn(true);
-          setEmail(email);
-        }
-      });
-    }
-  };
 
   React.useEffect(() => {
     if (!isLoggedIn) {
@@ -141,32 +148,6 @@ function App() {
     });
   }, [isLoggedIn]);
 
-
-  function handleUpdateUser(user) {
-    if (user.name !== "" && user.email !== "") {
-      apiConfig
-        .updateProfile(user)
-        .then((res) => {
-          setCurrentUser(res);
-          setInfoTooltipOpen(true);
-          openInfoTooltip();
-          setInfoTooltipMessage("Изменения успешно сохранены");
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    }
-  }
-
-  function signOut() {
-    localStorage.removeItem("token");
-    history.push("/");
-    setLoggedIn(false);
-  }
-
-  function handleSearchMovies(movies) {
-    setMovieSearchList(movies);
-  }
 
   React.useEffect(() => {
     if (!isLoggedIn) {
@@ -191,6 +172,26 @@ function App() {
   }, [isLoggedIn]);
 
 
+  function handleUpdateUser(user) {
+    if (user.email !== "" && user.name !== "") {
+      apiConfig
+        .updateProfile(user)
+        .then((res) => {
+          setCurrentUser(res);
+          openInfoTooltip();
+          setInfoTooltipMessage("Изменения успешно сохранены");
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  }
+
+  function handleSearchMovies(movies) {
+    setMovieSearchList(movies);
+  }
+
+
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <div className="page">
@@ -199,11 +200,11 @@ function App() {
             <Main isLoggedIn={isLoggedIn} />
           </Route>
 
-          <ProtectedRoute 
+          <ProtectedRoute
             path="/movies"
             movies={movies}
             isLoggedIn={isLoggedIn}
-            component = {Movies}
+            component={Movies}
             isLoading={isLoading}
             movieSearchList={movieSearchList}
             //onGetCards={getMovies}
@@ -211,7 +212,7 @@ function App() {
             searchError={searchError}
           />
 
-          <ProtectedRoute 
+          <ProtectedRoute
             path="/saved-movies"
             component={SavedMovies}
             isLoggedIn={isLoggedIn}
@@ -219,20 +220,20 @@ function App() {
             savedMovies={savedMovies}
           />
 
-
           <ProtectedRoute
             path="/profile"
             component={Profile}
-            isLoggedIn={isLoggedIn} 
+            isLoggedIn={isLoggedIn}
             onClick={signOut}
             handleUpdateUser={handleUpdateUser}
             openInfoTooltip={openInfoTooltip}
           />
 
           <Route path="/signup">
-            <Register 
+            <Register
               onRegister={handleRegister}
-              onRegisterPopup={onRegisterPopup} />
+              onRegisterPopup={onRegisterPopup}
+            />
           </Route>
 
           <Route path="/signin">
