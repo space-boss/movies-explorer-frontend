@@ -4,11 +4,6 @@ import "./MoviesCard.css";
 
 function MoviesCard(props) {
   const [isSaved, setSaved] = useState(false);
-
-  const toggleSaveButton = () => {
-    setSaved(!isSaved);
-  };
-
   const location = useLocation();
 
   const movieDeleteButton =
@@ -17,9 +12,19 @@ function MoviesCard(props) {
   const movieSaveButton = 
     location.pathname === "/movies" ? "movie__button" : "";
 
+  function toggleSaveButton() { 
+    if (movieSaveButton) {
+      setSaved(!isSaved)
+      props.onClick();
+    } else {
+      return
+    }
+  };
+
   function setImgLink(movie) {
     return `https://api.nomoreparties.co${movie.image.url}`;
   }
+
 
   function setDurationSuffix() {
     const { duration } = props.movie;
@@ -45,7 +50,7 @@ function MoviesCard(props) {
         className={`${movieDeleteButton} ${movieSaveButton} ${
           isSaved ? "movie__button_pressed" : ""
         }`}
-        onClick={movieSaveButton ? toggleSaveButton : ""}
+        onClick={toggleSaveButton}
         type="button"
       >
         Сохранить

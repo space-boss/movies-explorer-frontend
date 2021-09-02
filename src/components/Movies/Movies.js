@@ -8,28 +8,37 @@ import Footer from "../Footer/Footer";
 import Header from "../Header/Header";
 
 function Movies(props) {
+
+  const [moviesCards, setMoviesCards] = React.useState()
+
+
   return (
     <>
-      <Header loggedIn={true} />
+      <Header loggedIn={props.isLoggedIn} />
       <main className="content">
         <title>Библиотека фильмов</title>
         <SearchForm
-          movies={props.movies}
+          movies={props.localStorageMovies}
           savedMovies={props.savedMovies}
           handleSearchMovies={props.handleSearchMovies}
-          place={props.place}
           searchError={props.searchError}
 
         />
         {props.isLoading && <Preloader />}
         
         <MoviesCardList
-          movies={props.movies}
+          movies={
+            props.localStorageMovies === null
+            ? null
+            : props.localStorageMovies.length !== 0
+              ? props.localStorageMovies.slice(0, moviesCards)
+              : ''
+          }
           handleSaveMovie={props.handleSaveMovie}
+          deleteSavedMovie={props.deleteSavedMovie}
           savedMovies={props.savedMovies}
           movieSearchList={props.movieSearchList}
           searchError={props.searchError}
-
         />
         <Expand />
       </main>
@@ -39,4 +48,3 @@ function Movies(props) {
 }
 
 export default Movies;
-// {props.isLoading && <Preloader />}

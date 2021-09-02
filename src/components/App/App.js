@@ -37,7 +37,8 @@ function App() {
   const history = useHistory();
 
   React.useEffect(() => {
-    if (isLoggedIn) {
+    if (localStorage.loggedIn) {
+      setLoggedIn(true);
       history.push("/movies");
     }
   }, [isLoggedIn, history]);
@@ -65,7 +66,10 @@ function App() {
           localStorage.setItem("token", data.token);
           apiConfig.setToken();
           setLoggedIn(true);
+          localStorage.setItem('loggedIn', 'true');
           history.push("/movies");
+          getAllMovies();
+          getMySavedMovies();
         }
       })
       .catch((err) => {
@@ -107,6 +111,7 @@ function App() {
 
   function signOut() {
     localStorage.removeItem("token");
+    localStorage.clear('movies');
     history.push("/");
     setLoggedIn(false);
   };
@@ -149,27 +154,25 @@ function App() {
   }, [isLoggedIn]);
 
 
-  React.useEffect(() => {
-    if (!isLoggedIn) {
-      return;
+  function getAllMovies() {
+    if (localStorage.loggedIn && !localStorage.getItem('movies')) {
+      setIsLoading(true);
+      movieApiConfig
+        .getMovies()
+        .then((res) => {
+          localStorage.setItem("movies", JSON.stringify(res));
+          setIsLoading(false);
+          setMovies(res);
+          setSearchError("Начните поиск");
+        })
+        .catch((err) => {
+          setIsLoading(false);
+          setSearchError(
+            "Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз"
+          );
+        })
     }
-    setIsLoading(true);
-    movieApiConfig
-      .getMovies()
-      .then((res) => {
-        localStorage.setItem("movies", JSON.stringify(res));
-        setMovies(res);
-        setSearchError("Начните поиск");
-      })
-      .catch((err) => {
-        setSearchError(
-          "Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз"
-        );
-      })
-      .finally(() => {
-        setIsLoading(false);
-      });
-  }, [isLoggedIn]);
+  }
 
 
   function handleUpdateUser(user) {
@@ -191,6 +194,86 @@ function App() {
     setMovieSearchList(movies);
   }
 
+  function getMySavedMovies() {
+    if (localStorage.loggedIn) {
+      console.log("getMySavedMovies");
+      apiConfig
+        .getMovies()
+        .then(({data}) => {
+          setSavedMovies(data);
+        })
+        .catch((err) => console.log(err))
+    }
+  }
+
+  function handleSaveMovie(movie) {
+    if (movie.nameRU !== savedMovies.some((item) => item.nameRU)) {
+      apiConfig
+        .createMovie(movie)
+        .then(({savedMovie}) => {
+          setSavedMovies([savedMovie, ...savedMovies]);
+        })
+        .catch((err) => console.log(err));
+    }
+  }
+
+  function handleDeleteMovie(movieId) {
+    apiConfig
+      .deleteMovie(movieId)
+      .then(() => {
+        const updatedMovies = savedMovies.filter((item) => item._id !== movieId);
+        setSavedMovies(updatedMovies);
+      })
+      .catch((err) => console.log(err));
+  };
+
+
+  /*const getSavedMovies = (movies, savedMovies) => {
+    savedMovies.forEach((savedMovie) => {
+      const movie = movies.find((item) => item.nameRU === savedMovie.nameRU);
+      movie.isSaved = true;
+    });
+    return movies;
+  };*/
+
+  
+  /*function handleDeleteMovie(movie) {
+    const movieId = movie.id || movie.movieId;
+    const likedMovie = savedMovies.find(
+      (savedMovie) => savedMovie.movieId === movieId
+    );
+    apiConfig
+      .deleteMovie(likedMovie._id)
+      .then(() => {
+        const changedSavedMovies = savedMovies.filter(
+          (savedMovie) => savedMovie.movieId !== movieId
+        );
+        setSavedMovies(changedSavedMovies);
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+  }
+
+  function handleFavButtonClick(movie) {
+    if (!movie.isSaved && !movie._id) {
+      handleSaveMovie(movie);
+    } else {
+      handleDeleteMovie(movie);
+    }
+  }
+
+  useEffect(() => {
+    const allMovies = JSON.parse(localStorage.getItem("all-movies"));
+    if (allMovies) {
+      setMovies(getSavedMovies(allMovies, savedMovies));
+      setSearchError("Ничего не найдено");
+    } else {
+      setSearchError("Начните поиск");
+      setMovies([]);
+    }
+  }, [savedMovies]); */
+
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
@@ -210,14 +293,23 @@ function App() {
             //onGetCards={getMovies}
             handleSearchMovies={handleSearchMovies}
             searchError={searchError}
+            handleSaveMovie={handleSaveMovie}
+            localStorageMovies={localStorageMovies}
+            savedMovies={savedMovies}
           />
 
           <ProtectedRoute
             path="/saved-movies"
+            movies={movies}
             component={SavedMovies}
             isLoggedIn={isLoggedIn}
             isLoading={isLoading}
             savedMovies={savedMovies}
+            movieSearchList={movieSearchList}
+            deleteSavedMovie={handleDeleteMovie}
+            openInfoTooltip={openInfoTooltip}
+            searchError={searchError}
+            localStorageMovies={localStorageMovies}
           />
 
           <ProtectedRoute
@@ -226,7 +318,6 @@ function App() {
             isLoggedIn={isLoggedIn}
             onClick={signOut}
             handleUpdateUser={handleUpdateUser}
-            openInfoTooltip={openInfoTooltip}
           />
 
           <Route path="/signup">
