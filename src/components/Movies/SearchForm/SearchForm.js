@@ -19,8 +19,20 @@ function SearchForm(props) {
     return (movies.nameRU.toLowerCase().includes(search.toLowerCase()))
   }
 
+  /*function filterMovies(movies, value) {
+    if (moviesFilter) {
+      return movies.filter((movie) => movie.duration <= 40 && handleSearchQuery(movie, value))
+    } else {
+      return movies.filter((movie) => handleSearchQuery(movie, value));
+    }
+  } */
+
   function filterMovies(movies, value) {
-    return movies.filter((movie) => handleSearchQuery(movie, value));
+    if (moviesFilter) {
+      return movies.filter((movie) => movie.duration <= 40 && handleSearchQuery(movie, value))
+    } else {
+      return movies.filter((movie) => handleSearchQuery(movie, value));
+    }
   }
 
   function handleSubmit(evt) {
@@ -29,6 +41,8 @@ function SearchForm(props) {
     props.handleSearchMovies(filteredMovies);
     return;
   }
+
+
 
   
   return (
