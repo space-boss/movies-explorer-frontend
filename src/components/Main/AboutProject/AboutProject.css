@@ -1,0 +1,126 @@
+.project-about {
+	width: 100%;
+	padding: 110px 70px;
+}
+
+.project-about__description {
+	padding-top: 70px;
+	display: grid;
+	grid-gap: 40px;
+	grid-template-columns: repeat(2, calc(100%/2 - 40px));
+}
+
+.project-about__subtitle {
+	font-size: 20px;
+	font-weight: 400;
+	text-decoration: none;
+	letter-spacing: -0.04em;
+}
+
+.project-about__text {
+	margin-top: 26px;
+}
+
+.project-about__progress {
+	margin-top: 110px;
+	display: grid;
+	grid-template-columns: 1fr 4fr;
+	grid-template-rows: 36px 36px;
+	text-align: center;
+	align-items: center;
+}
+
+.project-about__progress-text {
+	color: #8B8B8B;
+	font-size: 14px;
+	font-weight: 500;
+	padding: 10px;
+}
+
+.project-about__progress-text_bar-checked {
+	background-color: #3DDC84;
+	color: black;
+}
+
+.project-about__progress-text_bar-unchecked {
+	background-color: #303030;
+	color: #FFFFFF;
+}
+
+
+@media screen and (max-width: 780px) {
+  .project-about {
+		padding: 90px 50px;
+	}
+
+	.project-about__description {
+		grid-gap: 20px;
+		grid-template-columns: repeat(2, calc(100%/2 - 20px));
+	}
+
+	.project-about__progress {
+		margin-top: 85px;
+	}
+}
+
+@media screen and (max-width: 579px) {
+
+	.project-about__subtitle {
+		height: 70px;
+	}
+}
+
+
+@media screen and (max-width: 500px) {
+
+	.project-about__progress-text {
+		font-size: 11px;
+		line-height: 13px;
+	}
+
+	.project-about__progress {
+		grid-template-columns: fit-content 4fr;
+	}
+}
+
+@media screen and (max-width: 520px) {
+.project-about__progress-text {
+	font-size: 11px;
+	line-height: 13px;
+}
+
+.project-about__progress {
+	margin-top: 57px;
+	grid-template-columns: 1fr 2fr;
+}
+}
+
+@media screen and (max-width: 420px) {
+  .project-about {
+		padding: 70px 18px;
+	}
+
+	.project-about__description {
+		display: flex;
+		flex-direction: column;
+		padding-top: 0;
+	}
+
+	.project-about__subtitle{
+		font-size: 18px;
+		line-height: 22px;
+		padding-top: 0;
+	}
+
+	.project-about__paragraph:first-of-type {
+		margin-top: 60px;
+	}
+
+	.project-about__paragraph {
+		margin-top: 40px;
+	}
+	
+	.project-about__text {
+		margin-top: 16px;
+	}
+}

@@ -1,0 +1,115 @@
+.about-me {
+  width: 100%;
+  padding: 110px 70px 75px;
+}
+
+.about-me__info {
+  width: 100%;
+  margin-top: 66px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.about-me__userpic {
+  width: 270px;
+  height: 327px;
+  object-fit: cover;  
+  border-radius: 10px;
+  margin-left: 50px;
+}
+
+.about-me__bio {
+  max-width: 600px;
+  text-align: start;
+}
+
+.about-me__subtitle {
+  margin: 18px 0 26px 0;
+}
+
+.about-me__links {
+  display: flex;
+  flex-direction: row;
+  margin: 105px 0 0;
+  list-style-type: none;
+  padding: 0;
+}
+
+.about-me__link {
+  text-decoration: none;
+  color: #FFFFFF;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+  margin: 0 20px 0 0;
+  cursor: pointer;
+  transition: opacity 0.4s;
+}
+
+.about-me__link:hover {
+  opacity: 0.6;
+}
+
+@media screen and (max-width: 768px) {
+  .about-me {
+    padding: 90px 50px 65px;
+  }
+
+  .about-me__bio {
+    max-width: 348px;
+  }
+
+  .about-me__userpic {
+    width: 255px;
+    height: 307px;
+    margin-left: 50px;
+  }
+
+  .about-me__subtitle {
+    font-size: 12px;
+    margin: 8px 0 20px;
+  }
+
+  .about-me__links {
+    margin-top: 80px;
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .about-me__info {
+    flex-direction: column-reverse;
+  }
+
+  .about-me__userpic {
+    width: 255px;
+    height: 307px;
+    margin-left: 0;
+  }
+
+  .about-me__bio {
+    margin-top: 40px;
+  }
+
+}
+
+@media screen and (max-width: 320px) {
+  .about-me {
+    padding: 85px 14px 50px;
+  }
+
+  .about-me__info {
+    flex-direction: column-reverse;
+  }
+
+  .about-me__userpic {
+    width: 100%;
+    height: 352px;
+  }
+
+  .about-me__links {
+    margin-top: 40px;
+  }
+
+}
