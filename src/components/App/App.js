@@ -43,11 +43,9 @@ function App() {
     }
   }, [isLoggedIn, history]);
 
-
   useEffect(() => {
     tokenCheck();
   });
-
 
   useEffect(() => {
     setInfoTooltipOpen(false);
@@ -55,7 +53,6 @@ function App() {
       history.push("/signin");
     }
   }, [isRegistered, history]);
-
 
   const handleLogin = ({ email, password }) => {
     return authApi
@@ -66,7 +63,7 @@ function App() {
           localStorage.setItem("token", data.token);
           apiConfig.setToken();
           setLoggedIn(true);
-          localStorage.setItem('loggedIn', 'true');
+          localStorage.setItem("loggedIn", "true");
           history.push("/movies");
           getAllMovies();
           getMySavedMovies();
@@ -78,7 +75,6 @@ function App() {
         console.log(err);
       });
   };
-
 
   const handleRegister = ({ name, email, password }) => {
     return authApi
@@ -95,7 +91,6 @@ function App() {
       });
   };
 
-
   const tokenCheck = () => {
     if (localStorage.getItem("token")) {
       let token = localStorage.getItem("token");
@@ -108,13 +103,12 @@ function App() {
     }
   };
 
-
   function signOut() {
     localStorage.removeItem("token");
-    localStorage.clear('movies');
+    localStorage.clear("movies");
     history.push("/");
     setLoggedIn(false);
-  };
+  }
 
   const openInfoTooltip = () => {
     setInfoTooltipOpen(true);
@@ -122,7 +116,7 @@ function App() {
 
   function closeInfoTooltip() {
     setInfoTooltipOpen(false);
-  };
+  }
 
   /*useEffect(() => {
     if (isLoggedIn) {
@@ -143,19 +137,19 @@ function App() {
   React.useEffect(() => {
     if (!isLoggedIn) {
       return;
-    };
-    apiConfig.getUser()
-    .then((res) => {
-      setCurrentUser(res)
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+    }
+    apiConfig
+      .getUser()
+      .then((res) => {
+        setCurrentUser(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }, [isLoggedIn]);
 
-
   function getAllMovies() {
-    if (localStorage.loggedIn && !localStorage.getItem('movies')) {
+    if (localStorage.loggedIn && !localStorage.getItem("movies")) {
       setIsLoading(true);
       movieApiConfig
         .getMovies()
@@ -170,10 +164,9 @@ function App() {
           setSearchError(
             "Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз"
           );
-        })
+        });
     }
   }
-
 
   function handleUpdateUser(user) {
     if (user.email !== "" && user.name !== "") {
@@ -199,34 +192,41 @@ function App() {
       console.log("getMySavedMovies");
       apiConfig
         .getMovies()
-        .then(({data}) => {
+        .then(({ data }) => {
           setSavedMovies(data);
         })
-        .catch((err) => console.log(err))
+        .catch((err) => console.log(err));
     }
   }
 
   function handleSaveMovie(movie) {
-    if (movie.nameRU !== savedMovies.some((item) => item.nameRU)) {
-      apiConfig
-        .createMovie(movie)
-        .then(({savedMovie}) => {
-          setSavedMovies([savedMovie, ...savedMovies]);
-        })
-        .catch((err) => console.log(err));
-    }
+    apiConfig
+      .createMovie(movie)
+      .then((savedMovie) => {
+        setSavedMovies([savedMovie, ...savedMovies]);
+      })
+      .catch((err) => console.log(err));
   }
 
   function handleDeleteMovie(movieId) {
     apiConfig
       .deleteMovie(movieId)
       .then(() => {
-        const updatedMovies = savedMovies.filter((item) => item._id !== movieId);
+        const updatedMovies = savedMovies.filter(
+          (item) => item._id !== movieId
+        );
         setSavedMovies(updatedMovies);
       })
       .catch((err) => console.log(err));
-  };
+  }
 
+  function handleFavButtonClick(movie) {
+    if (!movie.isSaved && !movie._id) {
+      handleSaveMovie(movie);
+    } else {
+      handleDeleteMovie(movie._id);
+    }
+  }
 
   /*const getSavedMovies = (movies, savedMovies) => {
     savedMovies.forEach((savedMovie) => {
@@ -236,7 +236,6 @@ function App() {
     return movies;
   };*/
 
-  
   /*function handleDeleteMovie(movie) {
     const movieId = movie.id || movie.movieId;
     const likedMovie = savedMovies.find(
@@ -274,7 +273,6 @@ function App() {
     }
   }, [savedMovies]); */
 
-
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <div className="page">
@@ -293,9 +291,9 @@ function App() {
             //onGetCards={getMovies}
             handleSearchMovies={handleSearchMovies}
             searchError={searchError}
-            handleSaveMovie={handleSaveMovie}
             localStorageMovies={localStorageMovies}
             savedMovies={savedMovies}
+            handleFavButtonClick={handleFavButtonClick}
           />
 
           <ProtectedRoute
@@ -306,10 +304,10 @@ function App() {
             isLoading={isLoading}
             savedMovies={savedMovies}
             movieSearchList={movieSearchList}
-            deleteSavedMovie={handleDeleteMovie}
             openInfoTooltip={openInfoTooltip}
             searchError={searchError}
             localStorageMovies={localStorageMovies}
+            handleFavButtonClick={handleFavButtonClick}
           />
 
           <ProtectedRoute

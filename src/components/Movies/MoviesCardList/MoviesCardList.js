@@ -20,7 +20,7 @@ function MoviesCardList(props) {
                     {...movie}
                     handleSaveMovie={props.handleSaveMovie}
                     savedMovies={props.savedMovies}
-                    deleteSavedMovie={props.deleteSavedMovie}
+                    handleFavButtonClick={props.handleFavButtonClick}
                   />
                 )
               })
@@ -37,7 +37,7 @@ function MoviesCardList(props) {
                     {...movie}
                     handleSaveMovie={props.handleSaveMovie}
                     savedMovies={props.savedMovies}
-                    deleteSavedMovie={props.deleteSavedMovie}
+                    handleFavButtonClick={props.handleFavButtonClick}
                   />
                 )
               })
@@ -48,7 +48,7 @@ function MoviesCardList(props) {
                     key={savedMovie.movieId}
                     {...savedMovie}
                     savedMovies={props.savedMovies}
-                    deleteSavedMovie={props.deleteSavedMovie}
+                    handleFavButtonClick={props.handleFavButtonClick}
                   />
                 )
               })

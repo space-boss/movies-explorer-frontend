@@ -16,6 +16,7 @@ class Api {
     if (res.ok) {
       return res.json(); 
     }
+    console.log(res);
     return Promise.reject(`Ошибка ${res.status}`);
   }
 
@@ -30,24 +31,25 @@ class Api {
       .then((movies) => movies);
   };
 
-  сreateMovie(data) {
+  createMovie(data) {
+    console.log(data);
     return fetch(`${this._url}/movies`, {
       method: "POST",
       credentials: "omit",
       //mode: "no-cors",
       headers: this._headers,
       body: JSON.stringify({
-        movieId: data.movieId,
+        movieId: data.id,
         country: data.country,
         director: data.director,
         duration: data.duration,
         year: data.year,
         description: data.description,
-        image: data.image,
-        trailer: data.trailer,
+        image: `https://api.nomoreparties.co${data.image.url}`,
+        trailer: data.trailerLink,
+        thumbnail: `https://api.nomoreparties.co${data.image.url}`,
         nameRU: data.nameRU,
         nameEN: data.nameEN,
-        thumbnail: data.thumbnail,
       }),
     }).then(this._checkResponse);
   }

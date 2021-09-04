@@ -14,15 +14,18 @@ function SavedMovies(props) {
     <main className="content">
       <title>Сохраненные фильмы</title>
       <SearchForm
+        path={props.path}
         movies={props.localStorageMovies}
         savedMovies={props.savedMovies}
         handleSearchMovies={props.handleSearchMovies}
         place={props.place}
       />
       <MoviesCardList 
+        path={props.path}
         movies={props.movies}
         savedMovies={props.savedMovies}
         movieSearchList={props.movieSearchList}
+        handleFavButtonClick={props.handleFavButtonClick}
         searchError={
           props.savedMovies.length < 1
             ? "Нет сохраненных фильмов"

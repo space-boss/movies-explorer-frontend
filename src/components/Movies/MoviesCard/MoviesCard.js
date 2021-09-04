@@ -12,17 +12,21 @@ function MoviesCard(props) {
   const movieSaveButton = 
     location.pathname === "/movies" ? "movie__button" : "";
 
-  function toggleSaveButton() { 
-    if (movieSaveButton) {
-      setSaved(!isSaved)
-      props.onClick();
-    } else {
-      return
-    }
-  };
 
-  function setImgLink(movie) {
-    return `https://api.nomoreparties.co${movie.image.url}`;
+    function setImgLink(movie) {
+      if (movie.image && movie.image.url) {
+        return `https://api.nomoreparties.co${movie.image.url}`;
+      }
+      if (movie.image) {
+        return movie.image;
+      } else {
+        return "";
+      }
+    }
+  
+
+  function handleFavClick() {
+    props.handleFavButtonClick(props.movie)
   }
 
 
@@ -47,10 +51,10 @@ function MoviesCard(props) {
       <p className="movie__duration">{setDurationSuffix(props.movie.duration)}</p>
       <img className="movie__pic" alt={props.movie.nameRU} src={setImgLink(props.movie)} />
       <button
+        onClick={handleFavClick}
         className={`${movieDeleteButton} ${movieSaveButton} ${
           isSaved ? "movie__button_pressed" : ""
         }`}
-        onClick={toggleSaveButton}
         type="button"
       >
         Сохранить
@@ -60,3 +64,29 @@ function MoviesCard(props) {
 }
 
 export default MoviesCard;
+
+  /*const checkIfMovieSaved = props.savedMovies.some((film) => film.nameRU === props.nameRU);
+
+  function setSavedMovie() {
+    if (checkIfMovieSaved) {
+      return
+    } const movie = {
+        country: props.country,
+        director: props.director,
+        duration: props.duration,
+        year: props.year,
+        description: props.description,
+        image: `https://api.nomoreparties.co${props.image.url}`,
+        trailer: props.trailerLink,
+        thumbnail: `https://api.nomoreparties.co${props.image.formats.thumbnail.url}`,
+        movieId: props.id,
+        nameRU: props.nameRU,
+        nameEN: props.nameEN,
+    }
+      props.handleSaveMovie(movie);
+  } 
+
+  function handleFavButtonClick() {
+    props.handleSaveMovie();
+  } */
+

@@ -19,6 +19,7 @@ function Movies(props) {
         <title>Библиотека фильмов</title>
         <SearchForm
           movies={props.localStorageMovies}
+          path={props.path}
           savedMovies={props.savedMovies}
           handleSearchMovies={props.handleSearchMovies}
           searchError={props.searchError}
@@ -34,8 +35,9 @@ function Movies(props) {
               ? props.localStorageMovies.slice(0, moviesCards)
               : ''
           }
+          path={props.path}
           handleSaveMovie={props.handleSaveMovie}
-          deleteSavedMovie={props.deleteSavedMovie}
+          handleFavButtonClick={props.handleFavButtonClick}
           savedMovies={props.savedMovies}
           movieSearchList={props.movieSearchList}
           searchError={props.searchError}
