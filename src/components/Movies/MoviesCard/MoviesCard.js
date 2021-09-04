@@ -26,7 +26,8 @@ function MoviesCard(props) {
   
 
   function handleFavClick() {
-    props.handleFavButtonClick(props.movie)
+    props.handleFavButtonClick(props.movie);
+    setSaved(true);
   }
 
 
@@ -64,29 +65,3 @@ function MoviesCard(props) {
 }
 
 export default MoviesCard;
-
-  /*const checkIfMovieSaved = props.savedMovies.some((film) => film.nameRU === props.nameRU);
-
-  function setSavedMovie() {
-    if (checkIfMovieSaved) {
-      return
-    } const movie = {
-        country: props.country,
-        director: props.director,
-        duration: props.duration,
-        year: props.year,
-        description: props.description,
-        image: `https://api.nomoreparties.co${props.image.url}`,
-        trailer: props.trailerLink,
-        thumbnail: `https://api.nomoreparties.co${props.image.formats.thumbnail.url}`,
-        movieId: props.id,
-        nameRU: props.nameRU,
-        nameEN: props.nameEN,
-    }
-      props.handleSaveMovie(movie);
-  } 
-
-  function handleFavButtonClick() {
-    props.handleSaveMovie();
-  } */
-

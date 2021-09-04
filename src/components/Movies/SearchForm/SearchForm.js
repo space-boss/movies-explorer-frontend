@@ -19,14 +19,6 @@ function SearchForm(props) {
     return (movies.nameRU.toLowerCase().includes(search.toLowerCase()))
   }
 
-  /*function filterMovies(movies, value) {
-    if (moviesFilter) {
-      return movies.filter((movie) => movie.duration <= 40 && handleSearchQuery(movie, value))
-    } else {
-      return movies.filter((movie) => handleSearchQuery(movie, value));
-    }
-  } */
-
   function filterMovies(movies, value) {
     if (moviesFilter) {
       return movies.filter((movie) => movie.duration <= 40 && handleSearchQuery(movie, value))
@@ -43,8 +35,6 @@ function SearchForm(props) {
   }
 
 
-
-  
   return (
     <section className="search">
       <form 

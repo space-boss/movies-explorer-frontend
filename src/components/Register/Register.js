@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import "./Register.css";
 import FormElement from "../FormElement/FormElement";
 import "../FormElement/FormElement.css";

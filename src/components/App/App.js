@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Route, Switch, useHistory, useLocation } from "react-router-dom";
+import { Route, Switch, useHistory } from "react-router-dom";
 import Main from "../Main/Main";
 import "./App.css";
 import Movies from "../Movies/Movies";
@@ -32,7 +32,6 @@ function App() {
 
   const localStorageMovies = JSON.parse(localStorage.getItem("movies"));
 
-  const path = useLocation().pathname;
 
   const history = useHistory();
 
@@ -117,18 +116,6 @@ function App() {
   function closeInfoTooltip() {
     setInfoTooltipOpen(false);
   }
-
-  /*useEffect(() => {
-    if (isLoggedIn) {
-      Promise.all([apiConfig.getUser(token), apiConfig.getMovies(token)])
-        .then(([userData, movies]) => {
-          setCurrentUser({ email: userData.email, name: userData.name });
-          setSavedMovies(movies.reverse());
-          localStorage.setItem("saved-movies", JSON.stringify(movies));
-        })
-        .catch((err) => console.log(err));
-    }
-  }, [isLoggedIn, token]); */
 
   function onRegisterPopup() {
     setInfoTooltipOpen(true);
@@ -228,51 +215,6 @@ function App() {
     }
   }
 
-  /*const getSavedMovies = (movies, savedMovies) => {
-    savedMovies.forEach((savedMovie) => {
-      const movie = movies.find((item) => item.nameRU === savedMovie.nameRU);
-      movie.isSaved = true;
-    });
-    return movies;
-  };*/
-
-  /*function handleDeleteMovie(movie) {
-    const movieId = movie.id || movie.movieId;
-    const likedMovie = savedMovies.find(
-      (savedMovie) => savedMovie.movieId === movieId
-    );
-    apiConfig
-      .deleteMovie(likedMovie._id)
-      .then(() => {
-        const changedSavedMovies = savedMovies.filter(
-          (savedMovie) => savedMovie.movieId !== movieId
-        );
-        setSavedMovies(changedSavedMovies);
-      })
-      .catch((err) => {
-        console.log(err);
-      })
-  }
-
-  function handleFavButtonClick(movie) {
-    if (!movie.isSaved && !movie._id) {
-      handleSaveMovie(movie);
-    } else {
-      handleDeleteMovie(movie);
-    }
-  }
-
-  useEffect(() => {
-    const allMovies = JSON.parse(localStorage.getItem("all-movies"));
-    if (allMovies) {
-      setMovies(getSavedMovies(allMovies, savedMovies));
-      setSearchError("Ничего не найдено");
-    } else {
-      setSearchError("Начните поиск");
-      setMovies([]);
-    }
-  }, [savedMovies]); */
-
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <div className="page">
@@ -288,7 +230,6 @@ function App() {
             component={Movies}
             isLoading={isLoading}
             movieSearchList={movieSearchList}
-            //onGetCards={getMovies}
             handleSearchMovies={handleSearchMovies}
             searchError={searchError}
             localStorageMovies={localStorageMovies}

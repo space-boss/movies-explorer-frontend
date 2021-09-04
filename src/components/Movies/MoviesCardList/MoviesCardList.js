@@ -8,8 +8,8 @@ function MoviesCardList(props) {
     {
       props.movies === null && props.preloader
       ? ('')
-      : props.movies === null && props.movieSearchList.length === 0
-        ? (<p className='movies-list__error'>Ничего не найдено</p>)
+      : props.movies === null && (props.movieSearchList.length === 0 || props.savedMovies.length === 0)
+        ? (<p className='movies-list__error'>{props.SearchError}</p>)
         : props.movieSearchList.length > 0
           ? (
            props.movieSearchList.map((movie) => {
