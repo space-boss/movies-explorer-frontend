@@ -1,12 +1,13 @@
 import React from "react";
 import "./Expand.css";
 
-function MoviesCard() {
+function Expand(props) {
+
   return (
     <div className="expand">
-      <button type="button" className="expand__button">Ещё</button>
+      <button onClick={props.onClick} type="button" className="expand__button">Ещё</button>
     </div>
   );
 }
 
-export default MoviesCard;
+export default Expand;

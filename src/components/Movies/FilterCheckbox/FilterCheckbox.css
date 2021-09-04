@@ -29,7 +29,7 @@
   bottom: 0;
   cursor: pointer;
   border-radius: 20px;
-  background-color: #3DDC84;
+  background-color: #424242;
   -webkit-transition: .4s;
   transition: .4s;
 }
@@ -37,7 +37,7 @@
 .search__slider:before {
   position: absolute;
   top: 2px;
-  right:2px;
+  left: 2px;
   content: "";
   height: 16px;
   width: 16px;
@@ -48,13 +48,13 @@
 }
 
 .search__switch-input:checked + .search__slider {
-  background-color: #424242;
+  background-color: #3DDC84;
 }
 
 .search__switch-input:checked + .search__slider:before {
-  -webkit-transform: translateX(-16px);
-  -ms-transform: translateX(-16px);
-  transform: translateX(-16px);
+  -webkit-transform: translateX(16px);
+  -ms-transform: translateX(16px);
+  transform: translateX(16px);
 }
 
 .search__slider-text {

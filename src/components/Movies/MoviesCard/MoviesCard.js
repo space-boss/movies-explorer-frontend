@@ -2,13 +2,8 @@ import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
 import "./MoviesCard.css";
 
-function MoviesCard({movie}) {
+function MoviesCard(props) {
   const [isSaved, setSaved] = useState(false);
-
-  const toggleSaveButton = () => {
-    setSaved(!isSaved);
-  };
-
   const location = useLocation();
 
   const movieDeleteButton =
@@ -18,16 +13,49 @@ function MoviesCard({movie}) {
     location.pathname === "/movies" ? "movie__button" : "";
 
 
+    function setImgLink(movie) {
+      if (movie.image && movie.image.url) {
+        return `https://api.nomoreparties.co${movie.image.url}`;
+      }
+      if (movie.image) {
+        return movie.image;
+      } else {
+        return "";
+      }
+    }
+  
+
+  function handleFavClick() {
+    props.handleFavButtonClick(props.movie);
+    setSaved(true);
+  }
+
+
+  function setDurationSuffix() {
+    const { duration } = props.movie;
+    let suffix = "";
+    if (duration % 10 === 1) {
+      suffix = "минута";
+    }
+    else if (duration % 10 < 5) {
+      suffix = "минуты";
+    }
+    else {
+      suffix = "минут";
+    }
+    return duration + " " + suffix;
+  }
+  
   return (
     <div className="movie">
-      <p className="movie__title">{movie.nameRu}</p>
-      <p className="movie__duration">{movie.duration}</p>
-      <img className="movie__pic" alt={movie.nameRu} src={movie.image} />
+      <p className="movie__title">{props.movie.nameRU}</p>
+      <p className="movie__duration">{setDurationSuffix(props.movie.duration)}</p>
+      <img className="movie__pic" alt={props.movie.nameRU} src={setImgLink(props.movie)} />
       <button
+        onClick={handleFavClick}
         className={`${movieDeleteButton} ${movieSaveButton} ${
           isSaved ? "movie__button_pressed" : ""
         }`}
-        onClick={movieSaveButton ? toggleSaveButton : ""}
         type="button"
       >
         Сохранить

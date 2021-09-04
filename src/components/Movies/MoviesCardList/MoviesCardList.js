@@ -1,44 +1,61 @@
-import React, { useState } from "react";
+import React from "react";
 import "./MoviesCardList.css";
 import MoviesCard from '../MoviesCard/MoviesCard';
 
-function MoviesCardList() {
-
-  const movies = [{
-    id: 1, 
-    nameRu: "В погоне за Бенкси", 
-    duration: "27 минут", 
-    image: "https://www.film.ru/sites/default/files/movies/posters/49621981-1239252.jpg"
-  },
-
-  {
-    id: 2, 
-    nameRu: "В погоне за Бенкси", 
-    duration: "27 минут", 
-    image: "https://www.film.ru/sites/default/files/movies/posters/49621981-1239252.jpg"
-  },
-
-  {
-    id: 3, 
-    nameRu: "В погоне за Бенкси", 
-    duration: "27 минут", 
-    image: "https://www.film.ru/sites/default/files/movies/posters/49621981-1239252.jpg"
-  },
-
-  {
-    id: 4, 
-    nameRu: "В погоне за Бенкси", 
-    duration: "27 минут", 
-    image: "https://www.film.ru/sites/default/files/movies/posters/49621981-1239252.jpg"
-  }]
-
+function MoviesCardList(props) {
   return (
-    <section className="movies-list">
-      {movies.map((movie) => (
-        <MoviesCard key={movie.id} movie={movie} />
-      ))}
-    </section>
-  );
+    <div className='movies-list'>
+    {
+      props.movies === null && props.preloader
+      ? ('')
+      : props.movies === null && (props.movieSearchList.length === 0 || props.savedMovies.length === 0)
+        ? (<p className='movies-list__error'>{props.SearchError}</p>)
+        : props.movieSearchList.length > 0
+          ? (
+           props.movieSearchList.map((movie) => {
+                return (
+                  <MoviesCard
+                    movie={movie}
+                    key={movie.id === undefined ? movie.movieId : movie.id}
+                    {...movie}
+                    handleSaveMovie={props.handleSaveMovie}
+                    savedMovies={props.savedMovies}
+                    handleFavButtonClick={props.handleFavButtonClick}
+                  />
+                )
+              })
+
+          )
+          :
+          (
+            props.path === '/movies'
+              ? props.movies.map((movie) => {
+                return (
+                  <MoviesCard
+                    movie={movie}
+                    key={movie.id}
+                    {...movie}
+                    handleSaveMovie={props.handleSaveMovie}
+                    savedMovies={props.savedMovies}
+                    handleFavButtonClick={props.handleFavButtonClick}
+                  />
+                )
+              })
+              : props.savedMovies.map((savedMovie) => {
+                return (
+                  <MoviesCard
+                    movie={savedMovie}
+                    key={savedMovie.movieId}
+                    {...savedMovie}
+                    savedMovies={props.savedMovies}
+                    handleFavButtonClick={props.handleFavButtonClick}
+                  />
+                )
+              })
+          )
+      }
+    </div>
+  )
 }
 
 export default MoviesCardList;

@@ -23,12 +23,12 @@ function FormElement(props) {
           noValidate
         >
           {props.children}
-          <input
+          <button
+            disabled={props.disabled}
             name="submit"
             type="submit"
-            value={props.submit}
             className={`form__submit form__submit-${props.name}`}
-          />
+          > {props.submit} </button>
         </form>
 
         <div className={`form__redirect form__redirect-${props.name}`}>
