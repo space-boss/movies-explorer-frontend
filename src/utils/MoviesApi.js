@@ -16,7 +16,6 @@ class MovieApi {
   getMovies() {
     return fetch(`${this._url}/beatfilm-movies`, {
       method: "GET",
-      credentials: 'omit',
       headers: this._headers,
     }).then(this._checkResponse)
   }

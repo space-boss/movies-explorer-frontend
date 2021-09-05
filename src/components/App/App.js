@@ -176,7 +176,6 @@ function App() {
 
   function getMySavedMovies() {
     if (localStorage.loggedIn) {
-      console.log("getMySavedMovies");
       apiConfig
         .getMovies()
         .then(({ data }) => {

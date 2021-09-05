@@ -16,14 +16,13 @@ class Api {
     if (res.ok) {
       return res.json(); 
     }
-    console.log(res);
     return Promise.reject(`Ошибка ${res.status}`);
   }
 
   getMovies = () => {
     return fetch(`${this._url}/movies`, {
       method: "GET",
-      credentials: "omit",
+      credentials: "include",
       headers: this._headers,
     })
       .then(this._checkResponse)
@@ -31,10 +30,9 @@ class Api {
   };
 
   createMovie(data) {
-    console.log(data);
     return fetch(`${this._url}/movies`, {
       method: "POST",
-      credentials: "omit",
+      credentials: "include",
       headers: this._headers,
       body: JSON.stringify({
         movieId: data.id,
@@ -55,7 +53,7 @@ class Api {
   deleteMovie(_id) {
     return fetch(`${this._url}/movies/${_id}`, {
       method: "DELETE",
-      credentials: "omit",
+      credentials: "include",
       headers: this._headers,
     }).then(this._checkResponse);
   }
@@ -63,7 +61,7 @@ class Api {
   getUser() {
     return fetch(`${this._url}/users/me`, {
       method: "GET",
-      credentials: "omit",
+      credentials: "include",
       headers: this._headers,
     })
       .then(this._checkResponse); 
@@ -72,7 +70,7 @@ class Api {
   updateProfile(data) {
     return fetch(`${this._url}/users/me`, {
       method: "PATCH",
-      credentials: "omit",
+      credentials: "include",
       headers: this._headers,
       body: JSON.stringify(data),
     }).then(this._checkResponse);
