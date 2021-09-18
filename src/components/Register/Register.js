@@ -1,5 +1,4 @@
 import React from "react";
-import { useHistory } from 'react-router-dom';
 import "./Register.css";
 import FormElement from "../FormElement/FormElement";
 import "../FormElement/FormElement.css";
@@ -18,7 +17,6 @@ function Register({onRegister}) {
   const [passwordTrue, setPasswordTrue] = React.useState(false);
   const [nameTrue, setNameTrue] = React.useState(false);
 
-  const history = useHistory();
 
   function handleEmailInput(evt) {
     setUserEmail(evt.target.value)
@@ -66,9 +64,6 @@ function Register({onRegister}) {
     }
   }
 
-  function _handleRedirect() {
-    history.push("/signin")
-  }
 
   function handleFormSubmit(evt) {
     evt.preventDefault(); 
@@ -77,8 +72,9 @@ function Register({onRegister}) {
       password: password,
       email: email,
     })
-    _handleRedirect();
   }
+
+  const isEnabled = emailTrue && nameTrue && passwordTrue; 
 
   return (
     <section className="register">
@@ -90,6 +86,7 @@ function Register({onRegister}) {
         link="/signin"
         action="Войти"
         onSubmit={handleFormSubmit}
+        disabled={!isEnabled}
       >
         <h4 className="form__input-label">Имя</h4>
         <input

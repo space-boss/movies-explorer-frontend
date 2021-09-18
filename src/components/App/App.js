@@ -49,7 +49,7 @@ function App() {
   useEffect(() => {
     setInfoTooltipOpen(false);
     if (isRegistered) {
-      history.push("/signin");
+      history.push("/movies");
     }
   }, [isRegistered, history]);
 
@@ -82,7 +82,7 @@ function App() {
         if (!res || res.statusCode === 400)
           throw new Error("Что-то пошло не так");
         setIsRegistered(true);
-        setInfoTooltipOpen(true);
+        handleLogin({email, password});
         return res;
       })
       .catch((err) => {

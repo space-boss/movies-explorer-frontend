@@ -4,7 +4,7 @@ import FormElement from "../FormElement/FormElement";
 import "../FormElement/FormElement.css";
 import { useHistory } from 'react-router-dom';
 
-function Login({ onLogin, onRegister }) {
+function Login({ onLogin }) {
 
   const [email, setUserEmail] = React.useState('');
   const [password, setUserPassword] = React.useState('');
@@ -62,9 +62,12 @@ function Login({ onLogin, onRegister }) {
     _handleRedirect();
   }
 
+  const isEnabled = emailTrue && passwordTrue;
+
   return (
     <section className="login">
       <FormElement
+        disabled={!isEnabled}
         name="login"
         title="Рады видеть!"
         submit="Войти"
