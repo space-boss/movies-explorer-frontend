@@ -41,6 +41,7 @@ function Movies(props) {
       <main className="content">
         <title>Библиотека фильмов</title>
         <SearchForm
+          loggedIn={props.isLoggedIn}
           movies={props.localStorageMovies}
           path={props.path}
           savedMovies={props.savedMovies}
@@ -59,6 +60,7 @@ function Movies(props) {
               : ''
           }
           path={props.path}
+          isLoading={props.isLoading}
           handleSaveMovie={props.handleSaveMovie}
           handleFavButtonClick={props.handleFavButtonClick} 
           savedMovies={props.savedMovies}

@@ -3,13 +3,15 @@ import "./MoviesCardList.css";
 import MoviesCard from '../MoviesCard/MoviesCard';
 
 function MoviesCardList(props) {
+  console.log(props.movieSearchList)
+  console.log(props.movies)
   return (
     <div className='movies-list'>
     {
       props.movies === null && props.preloader
-      ? ('')
-      : props.movies === null && (props.movieSearchList.length === 0 || props.savedMovies.length === 0)
-        ? (<p className='movies-list__error'>{props.SearchError}</p>)
+      ? (<p className='movies-list__error'>Начните поиск</p>)
+      : props.movies === null || props.movieSearchList.length === 0 
+        ? (<p className='movies-list__error'>Ничего не найдено</p>)
         : props.movieSearchList.length > 0
           ? (
            props.movieSearchList.map((movie) => {
@@ -21,6 +23,7 @@ function MoviesCardList(props) {
                     handleSaveMovie={props.handleSaveMovie}
                     savedMovies={props.savedMovies}
                     handleFavButtonClick={props.handleFavButtonClick}
+                    path={props.path}
                   />
                 )
               })
@@ -28,13 +31,14 @@ function MoviesCardList(props) {
           )
           :
           (
-            props.path === '/movies'
+            props.path === 'movies'
               ? props.movies.map((movie) => {
                 return (
                   <MoviesCard
                     movie={movie}
                     key={movie.id}
                     {...movie}
+                    path={props.path}
                     handleSaveMovie={props.handleSaveMovie}
                     savedMovies={props.savedMovies}
                     handleFavButtonClick={props.handleFavButtonClick}
@@ -48,6 +52,7 @@ function MoviesCardList(props) {
                     key={savedMovie.movieId}
                     {...savedMovie}
                     savedMovies={props.savedMovies}
+                    path={props.path}
                     handleFavButtonClick={props.handleFavButtonClick}
                   />
                 )

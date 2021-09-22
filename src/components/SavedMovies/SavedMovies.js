@@ -9,7 +9,7 @@ function SavedMovies(props) {
   console.log(props.savedMovies);
   return (
     <>
-    <Header loggedIn={true} />
+    <Header loggedIn={props.isLoggedIn} />
     <main className="content">
       <title>Сохраненные фильмы</title>
       <SearchForm
@@ -17,7 +17,6 @@ function SavedMovies(props) {
         movies={props.localStorageMovies}
         savedMovies={props.savedMovies}
         handleSearchMovies={props.handleSearchMovies}
-        place={props.place}
       />
       <MoviesCardList 
         path={props.path}
