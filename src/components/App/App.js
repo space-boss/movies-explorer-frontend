@@ -27,11 +27,19 @@ function App() {
   const [email, setEmail] = React.useState("");
   const [movies, setMovies] = React.useState([]);
   const [savedMovies, setSavedMovies] = React.useState([]);
-  const [movieSearchList, setMovieSearchList] = React.useState([]);
+  const [moviesSearchList, setmoviesSearchList] = React.useState([]);
+  const [savedMoviesSearchList, setsavedMoviesSearchList] = React.useState([]);
   const [searchError, setSearchError] = React.useState("");
 
   const localStorageMovies = JSON.parse(localStorage.getItem("movies"));
 
+  function handleSearchMovies(movies) {
+    setmoviesSearchList(movies);
+  }
+
+  function handleSearchSavedMovies(movies) {
+    setsavedMoviesSearchList(movies)
+  }
 
   const history = useHistory();
 
@@ -144,7 +152,6 @@ function App() {
           localStorage.setItem("movies", JSON.stringify(res));
           setIsLoading(false);
           setMovies(res);
-          setSearchError("Начните поиск");
         })
         .catch((err) => {
           setIsLoading(false);
@@ -170,12 +177,8 @@ function App() {
     }
   }
 
-  function handleSearchMovies(movies) {
-    setMovieSearchList(movies);
-  }
-
   function getMySavedMovies() {
-    if (localStorage.loggedIn) {
+    if (localStorage.loggedIn === 'true') {
       apiConfig
         .getMovies()
         .then(({ data }) => {
@@ -224,11 +227,12 @@ function App() {
 
           <ProtectedRoute
             path="/movies"
+            place='movies'
             movies={movies}
             isLoggedIn={isLoggedIn}
             component={Movies}
             isLoading={isLoading}
-            movieSearchList={movieSearchList}
+            moviesSearchList={moviesSearchList}
             handleSearchMovies={handleSearchMovies}
             searchError={searchError}
             localStorageMovies={localStorageMovies}
@@ -238,15 +242,17 @@ function App() {
 
           <ProtectedRoute
             path="/saved-movies"
+            place='saved-movies'
             movies={movies}
             component={SavedMovies}
             isLoggedIn={isLoggedIn}
             isLoading={isLoading}
             savedMovies={savedMovies}
-            movieSearchList={movieSearchList}
+            moviesSearchList={savedMoviesSearchList}
             openInfoTooltip={openInfoTooltip}
             searchError={searchError}
             localStorageMovies={localStorageMovies}
+            handleSearchMovies={handleSearchSavedMovies}
             handleFavButtonClick={handleFavButtonClick}
           />
 
@@ -264,7 +270,7 @@ function App() {
               onRegisterPopup={onRegisterPopup}
             />
           </Route>
-
+ 
           <Route path="/signin">
             <Login
               onLogin={handleLogin}

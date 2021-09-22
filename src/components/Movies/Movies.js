@@ -8,9 +8,8 @@ import Footer from "../Footer/Footer";
 import Header from "../Header/Header";
 
 function Movies(props) {
-
   let startArray;
-  let expandedArray; 
+  let expandedArray;
 
   const [moviesCards, setMoviesCards] = React.useState();
   const [moviesCardsExpand, setMoviesCardsExpland] = React.useState();
@@ -28,12 +27,11 @@ function Movies(props) {
     }
     setMoviesCards(startArray);
     setMoviesCardsExpland(expandedArray);
-  }, [])
+  }, []);
 
   function handleMovies() {
     setMoviesCards(moviesCards + moviesCardsExpand);
   }
-
 
   return (
     <>
@@ -43,28 +41,26 @@ function Movies(props) {
         <SearchForm
           loggedIn={props.isLoggedIn}
           movies={props.localStorageMovies}
-          path={props.path}
+          place={props.place}
           savedMovies={props.savedMovies}
           handleSearchMovies={props.handleSearchMovies}
           searchError={props.searchError}
-
         />
-        {props.isLoading && <Preloader />}
-        
+        {props.preloader ? <Preloader /> : ""}
         <MoviesCardList
           movies={
             props.localStorageMovies === null
-            ? null
-            : props.localStorageMovies.length !== 0
+              ? null
+              : props.localStorageMovies.length !== 0
               ? props.localStorageMovies.slice(0, moviesCards)
-              : ''
+              : ""
           }
-          path={props.path}
+          place={props.place}
           isLoading={props.isLoading}
           handleSaveMovie={props.handleSaveMovie}
-          handleFavButtonClick={props.handleFavButtonClick} 
+          handleFavButtonClick={props.handleFavButtonClick}
           savedMovies={props.savedMovies}
-          movieSearchList={props.movieSearchList}
+          moviesSearchList={props.moviesSearchList}
           searchError={props.searchError}
         />
         <Expand onClick={handleMovies} />
