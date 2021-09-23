@@ -41,7 +41,7 @@ function Movies(props) {
         <SearchForm
           loggedIn={props.isLoggedIn}
           movies={props.localStorageMovies}
-          place={props.place}
+          path={props.path}
           savedMovies={props.savedMovies}
           handleSearchMovies={props.handleSearchMovies}
           searchError={props.searchError}
@@ -55,8 +55,9 @@ function Movies(props) {
               ? props.localStorageMovies.slice(0, moviesCards)
               : ""
           }
-          place={props.place}
+          path={props.path}
           isLoading={props.isLoading}
+          isSearched={props.isSearched}
           handleSaveMovie={props.handleSaveMovie}
           handleFavButtonClick={props.handleFavButtonClick}
           savedMovies={props.savedMovies}

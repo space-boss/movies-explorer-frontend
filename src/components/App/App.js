@@ -19,6 +19,7 @@ function App() {
   const [isLoggedIn, setLoggedIn] = React.useState(false);
   const [isRegistered, setIsRegistered] = React.useState(false);
   const [isLoading, setIsLoading] = React.useState(false);
+  const [isSearched, setIsSearched] = React.useState(false);
 
   const [currentUser, setCurrentUser] = React.useState({ name: "", email: "" });
   const [infoTooltipMessage, setInfoTooltipMessage] = React.useState("");
@@ -33,12 +34,15 @@ function App() {
 
   const localStorageMovies = JSON.parse(localStorage.getItem("movies"));
 
+
   function handleSearchMovies(movies) {
     setmoviesSearchList(movies);
+    setIsSearched(true);
   }
 
   function handleSearchSavedMovies(movies) {
-    setsavedMoviesSearchList(movies)
+    setsavedMoviesSearchList(movies);
+    setIsSearched(true);
   }
 
   const history = useHistory();
@@ -71,9 +75,9 @@ function App() {
           apiConfig.setToken();
           setLoggedIn(true);
           localStorage.setItem("loggedIn", "true");
-          history.push("/movies");
           getAllMovies();
           getMySavedMovies();
+          history.push("/movies");
         }
       })
       .catch((err) => {
@@ -227,11 +231,11 @@ function App() {
 
           <ProtectedRoute
             path="/movies"
-            place='movies'
             movies={movies}
             isLoggedIn={isLoggedIn}
             component={Movies}
             isLoading={isLoading}
+            isSearched={isSearched}
             moviesSearchList={moviesSearchList}
             handleSearchMovies={handleSearchMovies}
             searchError={searchError}
@@ -242,10 +246,10 @@ function App() {
 
           <ProtectedRoute
             path="/saved-movies"
-            place='saved-movies'
             movies={movies}
             component={SavedMovies}
             isLoggedIn={isLoggedIn}
+            isSearched={isSearched}
             isLoading={isLoading}
             savedMovies={savedMovies}
             moviesSearchList={savedMoviesSearchList}

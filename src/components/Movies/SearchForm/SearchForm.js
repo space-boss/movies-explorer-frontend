@@ -8,7 +8,7 @@ function SearchForm(props) {
   const [moviesFilter, setMoviesFilter] = useState(false);
 
   function handleSearch(evt) {
-    setSearchValue(evt.target.value);
+    setSearchValue(evt.target.value);    
   }
 
   function handleCheckbox() {
