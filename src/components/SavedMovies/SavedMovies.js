@@ -6,14 +6,13 @@ import Footer from '../Footer/Footer';
 import Header from "../Header/Header";
 
 function SavedMovies(props) {
-  console.log(props.savedMovies);
   return (
     <>
     <Header loggedIn={props.isLoggedIn} />
     <main className="content">
       <title>Сохраненные фильмы</title>
       <SearchForm
-        path={props.place}
+        path={props.path}
         movies={props.localStorageMovies}
         savedMovies={props.savedMovies}
         handleSearchMovies={props.handleSearchMovies}
@@ -24,11 +23,6 @@ function SavedMovies(props) {
         savedMovies={props.savedMovies}
         moviesSearchList={props.moviesSearchList}
         handleFavButtonClick={props.handleFavButtonClick}
-        searchError={
-          props.savedMovies.length < 1
-            ? "Нет сохраненных фильмов"
-            : "Ничего не найдено"
-        }
       />
     </main>
     <Footer />

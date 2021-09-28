@@ -29,8 +29,13 @@ function SearchForm(props) {
 
   function handleSubmit(evt) {
     evt.preventDefault();
-    const filteredMovies = filterMovies(props.movies, searchValue);
-    props.handleSearchMovies(filteredMovies);
+    if (props.path === '/movies') {
+      const filteredMovies = filterMovies(props.movies, searchValue);
+      props.handleSearchMovies(filteredMovies);
+    } else if (props.path === '/saved-movies') {
+      const filteredMovies = filterMovies(props.savedMovies, searchValue);
+      props.handleSearchMovies(filteredMovies);
+    }
     return;
   }
 

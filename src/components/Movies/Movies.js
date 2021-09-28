@@ -57,7 +57,6 @@ function Movies(props) {
           }
           path={props.path}
           isLoading={props.isLoading}
-          isSearched={props.isSearched}
           handleSaveMovie={props.handleSaveMovie}
           handleFavButtonClick={props.handleFavButtonClick}
           savedMovies={props.savedMovies}

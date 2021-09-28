@@ -19,7 +19,6 @@ function App() {
   const [isLoggedIn, setLoggedIn] = React.useState(false);
   const [isRegistered, setIsRegistered] = React.useState(false);
   const [isLoading, setIsLoading] = React.useState(false);
-  const [isSearched, setIsSearched] = React.useState(false);
 
   const [currentUser, setCurrentUser] = React.useState({ name: "", email: "" });
   const [infoTooltipMessage, setInfoTooltipMessage] = React.useState("");
@@ -37,12 +36,10 @@ function App() {
 
   function handleSearchMovies(movies) {
     setmoviesSearchList(movies);
-    setIsSearched(true);
   }
 
   function handleSearchSavedMovies(movies) {
     setsavedMoviesSearchList(movies);
-    setIsSearched(true);
   }
 
   const history = useHistory();
@@ -77,7 +74,6 @@ function App() {
           localStorage.setItem("loggedIn", "true");
           getAllMovies();
           getMySavedMovies();
-          history.push("/movies");
         }
       })
       .catch((err) => {
@@ -235,7 +231,6 @@ function App() {
             isLoggedIn={isLoggedIn}
             component={Movies}
             isLoading={isLoading}
-            isSearched={isSearched}
             moviesSearchList={moviesSearchList}
             handleSearchMovies={handleSearchMovies}
             searchError={searchError}
@@ -249,7 +244,6 @@ function App() {
             movies={movies}
             component={SavedMovies}
             isLoggedIn={isLoggedIn}
-            isSearched={isSearched}
             isLoading={isLoading}
             savedMovies={savedMovies}
             moviesSearchList={savedMoviesSearchList}
