@@ -8,26 +8,26 @@ import Footer from "../Footer/Footer";
 import Header from "../Header/Header";
 
 function Movies(props) {
-  let startArray;
-  let expandedArray;
 
+  const [startArray, setStartArray] = React.useState();
+  const [expandedArray, setExpandedArray] = React.useState();
   const [moviesCards, setMoviesCards] = React.useState();
   const [moviesCardsExpand, setMoviesCardsExpland] = React.useState();
 
   useEffect(() => {
     if (window.innerWidth >= 768) {
-      startArray = 12;
-      expandedArray = 3;
+      setStartArray(12);
+      setExpandedArray(3);
     } else if (window.innerWidth >= 480) {
-      startArray = 8;
-      expandedArray = 2;
+      setStartArray(8);
+      setExpandedArray(2);
     } else {
-      startArray = 5;
-      expandedArray = 2;
+      setStartArray(5);
+      setExpandedArray(2);
     }
     setMoviesCards(startArray);
     setMoviesCardsExpland(expandedArray);
-  }, []);
+  }, [startArray, expandedArray]);
 
   function handleMovies() {
     setMoviesCards(moviesCards + moviesCardsExpand);

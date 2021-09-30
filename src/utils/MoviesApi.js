@@ -2,7 +2,8 @@ class MovieApi {
   constructor(config) {
     this._url = config.url;
     this._headers = {
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
+      Accept: 'application/json'
     }
   }
 

@@ -27,7 +27,7 @@ function App() {
   const [email, setEmail] = React.useState("");
   const [movies, setMovies] = React.useState([]);
   const [savedMovies, setSavedMovies] = React.useState([]);
-  const [moviesSearchList, setmoviesSearchList] = React.useState([]);
+  const [moviesSearchList, setmoviesSearchList] = React.useState(null);
   const [savedMoviesSearchList, setsavedMoviesSearchList] = React.useState([]);
   const [searchError, setSearchError] = React.useState("");
 
@@ -44,7 +44,7 @@ function App() {
 
   const history = useHistory();
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (localStorage.loggedIn) {
       setLoggedIn(true);
       history.push("/movies");
@@ -52,6 +52,7 @@ function App() {
   }, [isLoggedIn, history]);
 
   useEffect(() => {
+    console.log('token check');
     tokenCheck();
   });
 
@@ -73,7 +74,7 @@ function App() {
           setLoggedIn(true);
           localStorage.setItem("loggedIn", "true");
           getAllMovies();
-          getMySavedMovies();
+          history.push('/movies');
         }
       })
       .catch((err) => {
@@ -129,7 +130,7 @@ function App() {
     setInfoTooltipOpen(true);
   }
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (!isLoggedIn) {
       return;
     }
@@ -177,16 +178,16 @@ function App() {
     }
   }
 
-  function getMySavedMovies() {
+  useEffect(() => {
     if (localStorage.loggedIn === 'true') {
       apiConfig
         .getMovies()
-        .then(({ data }) => {
+        .then((data) => {
           setSavedMovies(data);
         })
         .catch((err) => console.log(err));
     }
-  }
+  },[])
 
   function handleSaveMovie(movie) {
     apiConfig

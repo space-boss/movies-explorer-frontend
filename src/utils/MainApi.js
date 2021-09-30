@@ -25,8 +25,7 @@ class Api {
       credentials: "include",
       headers: this._headers,
     })
-      .then(this._checkResponse)
-      .then((movies) => movies);
+      .then(this._checkResponse);
   };
 
   createMovie(data) {
