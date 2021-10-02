@@ -189,12 +189,14 @@ function App() {
   },[])
 
   function handleSaveMovie(movie) {
-    apiConfig
-      .createMovie(movie)
-      .then((savedMovie) => {
-        setSavedMovies([savedMovie, ...savedMovies]);
-      })
-      .catch((err) => console.log(err));
+    if (!savedMovies.some((item) => item.nameRU === movie.nameRU)) {
+      apiConfig
+        .createMovie(movie)
+        .then((savedMovie) => {
+          setSavedMovies([savedMovie, ...savedMovies]);
+        })
+        .catch((err) => console.log(err));
+    }
   }
 
   function handleDeleteMovie(movieId) {

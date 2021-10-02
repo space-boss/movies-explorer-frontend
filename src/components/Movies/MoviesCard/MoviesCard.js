@@ -24,12 +24,10 @@ function MoviesCard(props) {
       }
     }
   
-
   function handleFavClick() {
-    props.handleFavButtonClick(props.movie);
     setSaved(true);
+    props.handleFavButtonClick(props.movie);
   }
-
 
   function setDurationSuffix() {
     const { duration } = props.movie;
@@ -45,7 +43,7 @@ function MoviesCard(props) {
     }
     return duration + " " + suffix;
   }
-  
+
   return (
     <div className="movie">
       <p className="movie__title">{props.movie.nameRU}</p>
