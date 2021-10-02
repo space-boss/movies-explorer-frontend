@@ -32,7 +32,7 @@ function Movies(props) {
   function handleMovies() {
     setMoviesCards(moviesCards + moviesCardsExpand);
   }
-  console.log(props.localStorageMovies.slice(0, moviesCards));
+  console.log(props.localStorageMovies);
   return (
     <>
       <Header loggedIn={props.isLoggedIn} />
@@ -46,7 +46,9 @@ function Movies(props) {
           handleSearchMovies={props.handleSearchMovies}
           searchError={props.searchError}
         />
+
         {props.preloader ? <Preloader /> : ""}
+        
         <MoviesCardList
           movies={
             props.localStorageMovies === null
@@ -60,7 +62,13 @@ function Movies(props) {
           handleSaveMovie={props.handleSaveMovie}
           handleFavButtonClick={props.handleFavButtonClick}
           savedMovies={props.savedMovies}
-          moviesSearchList={props.moviesSearchList}
+          moviesSearchList={
+            props.moviesSearchList === null
+            ? null
+            : props.moviesSearchList.length !== 0
+            ? props.moviesSearchList.slice(0, moviesCards)
+            : ""
+          }
           searchError={props.searchError}
         />
         <Expand onClick={handleMovies} />
