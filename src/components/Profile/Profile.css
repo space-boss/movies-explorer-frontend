@@ -82,6 +82,15 @@
   color: #EE3465;
 }
 
+.profile__link_disabled {
+  opacity: 0.4;
+  transition: none;
+}
+
+.profile__link_disabled:hover {
+  opacity: 0.4;
+}
+
 @media screen and (max-width: 768px) {
   .profile {
     margin: 236px auto 0;

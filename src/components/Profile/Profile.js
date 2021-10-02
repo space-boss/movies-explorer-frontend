@@ -60,7 +60,8 @@ function Profile(props) {
     });
   }
 
-  const isEnabled = emailTrue || nameTrue;
+  const isEnabled = (emailTrue || nameTrue) && (name !== currentUser.name || email !== currentUser.email);
+
 
   return (
     <>
@@ -102,7 +103,7 @@ function Profile(props) {
             disabled={!isEnabled}
             name="edit-profile"
             type="submit"
-            className="profile__link"
+            className={`profile__link ${!isEnabled && 'profile__link_disabled'}`}
             value="Редактировать"
           />
         </form>
