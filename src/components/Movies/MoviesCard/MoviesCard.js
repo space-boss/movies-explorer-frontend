@@ -50,7 +50,9 @@ function MoviesCard(props) {
     <div className="movie">
       <p className="movie__title">{props.movie.nameRU}</p>
       <p className="movie__duration">{setDurationSuffix(props.movie.duration)}</p>
-      <img className="movie__pic" alt={props.movie.nameRU} src={setImgLink(props.movie)} />
+      <a className="movie__trailer-link" href={props.movie.trailerLink} target="_blank"  rel="noreferrer">
+        <img className="movie__pic" alt={props.movie.nameRU} src={setImgLink(props.movie)} />
+      </a>
       <button
         onClick={handleFavClick}
         className={`${movieDeleteButton} ${movieSaveButton} ${

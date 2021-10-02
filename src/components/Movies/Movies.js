@@ -12,13 +12,13 @@ function Movies(props) {
   const [startArray, setStartArray] = React.useState();
   const [expandedArray, setExpandedArray] = React.useState();
   const [moviesCards, setMoviesCards] = React.useState();
-  const [moviesCardsExpand, setMoviesCardsExpland] = React.useState();
+  const [moviesCardsExpand, setMoviesCardsExpand] = React.useState();
 
   useEffect(() => {
-    if (window.innerWidth >= 768) {
+    if (window.innerWidth > 768) {
       setStartArray(12);
       setExpandedArray(3);
-    } else if (window.innerWidth >= 480) {
+    } else if (window.innerWidth > 480) {
       setStartArray(8);
       setExpandedArray(2);
     } else {
@@ -26,13 +26,13 @@ function Movies(props) {
       setExpandedArray(2);
     }
     setMoviesCards(startArray);
-    setMoviesCardsExpland(expandedArray);
+    setMoviesCardsExpand(expandedArray);
   }, [startArray, expandedArray]);
 
   function handleMovies() {
     setMoviesCards(moviesCards + moviesCardsExpand);
   }
-  console.log(props.localStorageMovies);
+  
   return (
     <>
       <Header loggedIn={props.isLoggedIn} />

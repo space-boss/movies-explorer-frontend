@@ -20,7 +20,6 @@ function SearchForm(props) {
   }
 
   function filterMovies(movies, value) {
-    console.log(movies);
     if (moviesFilter) {
       return movies.filter((movie) => movie.duration <= 40 && handleSearchQuery(movie, value))
     } else {
@@ -31,12 +30,10 @@ function SearchForm(props) {
   function handleSubmit(evt) {
     evt.preventDefault();
     if (props.path === '/movies') {
-      console.log(props.movies);
       const filteredMovies = filterMovies(props.movies, searchValue);
       props.handleSearchMovies(filteredMovies);
     } else if (props.path === '/saved-movies') {
       const filteredMovies = filterMovies(props.savedMovies, searchValue);
-      console.log(filteredMovies);
       props.handleSearchMovies(filteredMovies);
     }
     return;
