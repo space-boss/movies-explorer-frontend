@@ -11,7 +11,7 @@ function MoviesCardList(props) {
     )
   }
 
-  else if (!props.savedMovies && props.moviesSearchList.length === 0) {
+  else if (props.path !== '/saved-movies' && props.moviesSearchList.length === 0) {
     return (
       <div className='movies-list'>
         <p className='movies-list__error'>Ничего не найдено</p>
@@ -20,6 +20,7 @@ function MoviesCardList(props) {
   }
 
   else if (props.moviesSearchList.length > 0) {
+    console.log(props.movies.length);
     return (
       <div className='movies-list'>
         {
@@ -62,6 +63,7 @@ function MoviesCardList(props) {
   }
 
   else if (props.path === '/movies') {
+    console.log(props.movies);
     return (
       <div className='movies-list'>
         {

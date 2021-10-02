@@ -27,19 +27,19 @@ function App() {
   const [email, setEmail] = React.useState("");
   const [movies, setMovies] = React.useState([]);
   const [savedMovies, setSavedMovies] = React.useState([]);
-  const [moviesSearchList, setmoviesSearchList] = React.useState(null);
-  const [savedMoviesSearchList, setsavedMoviesSearchList] = React.useState([]);
+  const [moviesSearchList, setMoviesSearchList] = React.useState(null);
+  const [savedMoviesSearchList, setSavedMoviesSearchList] = React.useState([]);
   const [searchError, setSearchError] = React.useState("");
 
   const localStorageMovies = JSON.parse(localStorage.getItem("movies"));
 
 
   function handleSearchMovies(movies) {
-    setmoviesSearchList(movies);
+    setMoviesSearchList(movies);
   }
 
   function handleSearchSavedMovies(movies) {
-    setsavedMoviesSearchList(movies);
+    setSavedMoviesSearchList(movies);
   }
 
   const history = useHistory();
@@ -52,7 +52,6 @@ function App() {
   }, [isLoggedIn, history]);
 
   useEffect(() => {
-    console.log('token check');
     tokenCheck();
   });
 

@@ -32,7 +32,7 @@ function Movies(props) {
   function handleMovies() {
     setMoviesCards(moviesCards + moviesCardsExpand);
   }
-
+  console.log(props.localStorageMovies.slice(0, moviesCards));
   return (
     <>
       <Header loggedIn={props.isLoggedIn} />
