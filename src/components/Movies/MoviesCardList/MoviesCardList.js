@@ -20,7 +20,6 @@ function MoviesCardList(props) {
   }
 
   else if (props.moviesSearchList.length > 0) {
-    console.log(props.movies.length);
     return (
       <div className='movies-list'>
         {
@@ -63,7 +62,6 @@ function MoviesCardList(props) {
   }
 
   else if (props.path === '/movies') {
-    console.log(props.movies);
     return (
       <div className='movies-list'>
         {

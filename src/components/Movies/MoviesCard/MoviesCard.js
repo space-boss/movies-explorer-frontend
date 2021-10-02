@@ -24,12 +24,10 @@ function MoviesCard(props) {
       }
     }
   
-
   function handleFavClick() {
-    props.handleFavButtonClick(props.movie);
     setSaved(true);
+    props.handleFavButtonClick(props.movie);
   }
-
 
   function setDurationSuffix() {
     const { duration } = props.movie;
@@ -45,12 +43,14 @@ function MoviesCard(props) {
     }
     return duration + " " + suffix;
   }
-  
+
   return (
     <div className="movie">
       <p className="movie__title">{props.movie.nameRU}</p>
       <p className="movie__duration">{setDurationSuffix(props.movie.duration)}</p>
-      <img className="movie__pic" alt={props.movie.nameRU} src={setImgLink(props.movie)} />
+      <a className="movie__trailer-link" href={props.movie.trailerLink} target="_blank"  rel="noreferrer">
+        <img className="movie__pic" alt={props.movie.nameRU} src={setImgLink(props.movie)} />
+      </a>
       <button
         onClick={handleFavClick}
         className={`${movieDeleteButton} ${movieSaveButton} ${

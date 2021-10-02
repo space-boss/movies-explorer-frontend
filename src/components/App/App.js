@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Route, Switch, useHistory } from "react-router-dom";
+import { Route, Switch, useHistory, useLocation } from "react-router-dom";
 import Main from "../Main/Main";
 import "./App.css";
 import Movies from "../Movies/Movies";
@@ -33,7 +33,6 @@ function App() {
 
   const localStorageMovies = JSON.parse(localStorage.getItem("movies"));
 
-
   function handleSearchMovies(movies) {
     setMoviesSearchList(movies);
   }
@@ -42,14 +41,16 @@ function App() {
     setSavedMoviesSearchList(movies);
   }
 
+  const path = useLocation().pathname;
+
   const history = useHistory();
 
   useEffect(() => {
     if (localStorage.loggedIn) {
       setLoggedIn(true);
-      history.push("/movies");
+      history.push(path);
     }
-  }, [isLoggedIn, history]);
+  }, [isLoggedIn, history, path]);
 
   useEffect(() => {
     tokenCheck();
@@ -100,13 +101,23 @@ function App() {
 
   const tokenCheck = () => {
     if (localStorage.getItem("token")) {
-      let token = localStorage.getItem("token");
+      const token = localStorage.getItem("token");
       authApi.getContent(token).then(({ email }) => {
         if (email) {
           setLoggedIn(true);
           setEmail(email);
         }
-      });
+      })
+      .catch((err) => {
+        history.push('/signin');
+
+        if (err === "400") {
+          return console.log("Токен не задан")
+        }
+        if (err === "401") {
+          return console.log("Передан неверный токен");
+        }
+      })
     }
   };
 
@@ -189,12 +200,14 @@ function App() {
   },[])
 
   function handleSaveMovie(movie) {
-    apiConfig
-      .createMovie(movie)
-      .then((savedMovie) => {
-        setSavedMovies([savedMovie, ...savedMovies]);
-      })
-      .catch((err) => console.log(err));
+    if (!savedMovies.some((item) => item.nameRU === movie.nameRU)) {
+      apiConfig
+        .createMovie(movie)
+        .then((savedMovie) => {
+          setSavedMovies([savedMovie, ...savedMovies]);
+        })
+        .catch((err) => console.log(err));
+    }
   }
 
   function handleDeleteMovie(movieId) {

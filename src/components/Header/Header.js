@@ -6,7 +6,7 @@ import { useMediaQuery } from "react-responsive";
 import Navigation from "../Navigation/Navigation";
 
 function Header(props) {
-  let location = useLocation();
+  const location = useLocation();
 
   const moviesLinkHighlight =
     location.pathname === "/movies" ? "header__link-movies_active" : "";

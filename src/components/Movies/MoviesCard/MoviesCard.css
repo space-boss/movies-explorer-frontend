@@ -6,8 +6,12 @@
   grid-template-rows: 54px 200px 65px;
   grid-template-areas:
     "title duration"
-    "pic pic"
+    "link link"
     "saved saved";
+}
+
+.movie__trailer-link {
+  grid-area: link;
 }
 
 .movie__pic {
