@@ -82,4 +82,3 @@ function SearchForm(props) {
 export default SearchForm;
 
 
-//<div id="search-input-error" className="form__search-input-error">{searchError}</div>
