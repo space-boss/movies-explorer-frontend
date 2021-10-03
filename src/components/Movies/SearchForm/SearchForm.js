@@ -5,10 +5,11 @@ import FilterCheckbox from '../FilterCheckbox/FilterCheckbox';
 function SearchForm(props) {
 
   const [searchValue, setSearchValue] = useState('');
+  const [searchError, setSearchError] = useState("");
   const [moviesFilter, setMoviesFilter] = useState(false);
 
   function handleSearch(evt) {
-    setSearchValue(evt.target.value);    
+    setSearchValue(evt.target.value);
   }
 
   function handleCheckbox() {
@@ -29,6 +30,12 @@ function SearchForm(props) {
 
   function handleSubmit(evt) {
     evt.preventDefault();
+    if (searchValue === "") {
+      setSearchError("Нужно ввести ключевое слово")
+      return
+    }
+
+    setSearchError("")
     if (props.path === '/movies') {
       const filteredMovies = filterMovies(props.movies, searchValue);
       props.handleSearchMovies(filteredMovies);
@@ -42,7 +49,7 @@ function SearchForm(props) {
 
   return (
     <section className="search">
-      <form 
+      <form
       className="search__form"
       onSubmit={handleSubmit}
       >
@@ -52,26 +59,27 @@ function SearchForm(props) {
           id="search-input"
           name="search-input"
           placeholder="Фильм"
-          required
           minLength="1"
           maxLength="40"
         />
-
         <input
-          value=" "
+          value=""
           name="submit"
           type="submit"
           className="search__submit-button"
         />
       </form>
-
-      <FilterCheckbox 
+      <span id="search-input-error" className="form__search-input-error">{searchError}</span>
+      <FilterCheckbox
         onChange={handleCheckbox}
       />
 
 
     </section>
-  );   
+  );
 }
 
 export default SearchForm;
+
+
+//<div id="search-input-error" className="form__search-input-error">{searchError}</div>

@@ -8,11 +8,11 @@ import Footer from "../Footer/Footer";
 import Header from "../Header/Header";
 
 function Movies(props) {
-
   const [startArray, setStartArray] = React.useState();
   const [expandedArray, setExpandedArray] = React.useState();
   const [moviesCards, setMoviesCards] = React.useState();
   const [moviesCardsExpand, setMoviesCardsExpand] = React.useState();
+  const [hideExpand, setHideExpand] = React.useState(false);
 
   useEffect(() => {
     if (window.innerWidth > 768) {
@@ -29,10 +29,23 @@ function Movies(props) {
     setMoviesCardsExpand(expandedArray);
   }, [startArray, expandedArray]);
 
+  useEffect(() => {
+    if (moviesCards === null || props.moviesSearchList === null) {
+      setHideExpand(true)
+      return
+    }
+
+    if (moviesCards > props.moviesSearchList.length) {
+      setHideExpand(true);
+    } else {
+      setHideExpand(false);
+    }
+  }, [moviesCards, props.moviesSearchList]);
+
   function handleMovies() {
     setMoviesCards(moviesCards + moviesCardsExpand);
   }
-  
+
   return (
     <>
       <Header loggedIn={props.isLoggedIn} />
@@ -48,7 +61,7 @@ function Movies(props) {
         />
 
         {props.preloader ? <Preloader /> : ""}
-        
+
         <MoviesCardList
           movies={
             props.localStorageMovies === null
@@ -64,14 +77,14 @@ function Movies(props) {
           savedMovies={props.savedMovies}
           moviesSearchList={
             props.moviesSearchList === null
-            ? null
-            : props.moviesSearchList.length !== 0
-            ? props.moviesSearchList.slice(0, moviesCards)
-            : ""
+              ? null
+              : props.moviesSearchList.length !== 0
+              ? props.moviesSearchList.slice(0, moviesCards)
+              : ""
           }
           searchError={props.searchError}
         />
-        <Expand onClick={handleMovies} />
+        {hideExpand || <Expand onClick={handleMovies} />}
       </main>
       <Footer />
     </>
