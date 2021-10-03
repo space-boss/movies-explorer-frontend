@@ -28,7 +28,7 @@ function App() {
   const [movies, setMovies] = React.useState([]);
   const [savedMovies, setSavedMovies] = React.useState([]);
   const [moviesSearchList, setMoviesSearchList] = React.useState(null);
-  const [savedMoviesSearchList, setSavedMoviesSearchList] = React.useState([]);
+  const [savedMoviesSearchList, setSavedMoviesSearchList] = React.useState(null);
   const [searchError, setSearchError] = React.useState("");
 
   const localStorageMovies = JSON.parse(localStorage.getItem("movies"));
@@ -112,10 +112,10 @@ function App() {
         history.push('/signin');
 
         if (err === "400") {
-          return console.log("Токен не задан")
+          console.log("Токен не задан")
         }
         if (err === "401") {
-          return console.log("Передан неверный токен");
+           console.log("Передан неверный токен");
         }
       })
     }
@@ -124,6 +124,7 @@ function App() {
   function signOut() {
     localStorage.removeItem("token");
     localStorage.clear("movies");
+    setSavedMovies([]);
     history.push("/");
     setLoggedIn(false);
   }
@@ -230,6 +231,10 @@ function App() {
     }
   }
 
+  if (isLoggedIn && (path === "/signin" || path === "/signup")) {
+    history.push("/")
+  }
+
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <div className="page">
@@ -281,7 +286,7 @@ function App() {
               onRegisterPopup={onRegisterPopup}
             />
           </Route>
- 
+
           <Route path="/signin">
             <Login
               onLogin={handleLogin}
@@ -289,6 +294,7 @@ function App() {
               onRegisterPopup={onRegisterPopup}
             />
           </Route>
+
 
           <Route path={"*"}>
             <NotFoundPage />

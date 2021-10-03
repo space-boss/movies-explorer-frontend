@@ -3,13 +3,13 @@ import { useLocation } from "react-router-dom";
 import "./MoviesCard.css";
 
 function MoviesCard(props) {
-  const [isSaved, setSaved] = useState(false);
   const location = useLocation();
+  const isSaved = props.savedMovies.some((item) => item.nameRU === props.nameRU)
 
   const movieDeleteButton =
     location.pathname === "/saved-movies" ? "movie__delete-button" : "";
 
-  const movieSaveButton = 
+  const movieSaveButton =
     location.pathname === "/movies" ? "movie__button" : "";
 
 
@@ -23,9 +23,8 @@ function MoviesCard(props) {
         return "";
       }
     }
-  
+
   function handleFavClick() {
-    setSaved(true);
     props.handleFavButtonClick(props.movie);
   }
 
