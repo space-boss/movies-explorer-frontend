@@ -9,6 +9,9 @@ function MoviesCard(props) {
   const movieDeleteButton =
     location.pathname === "/saved-movies" ? "movie__delete-button" : "";
 
+  const movieSaveButtonPressed =
+    location.pathname === "/movies" && isSaved ? "movie__button_pressed" : "";
+
   const movieSaveButton =
     location.pathname === "/movies" ? "movie__button" : "";
 
@@ -52,9 +55,7 @@ function MoviesCard(props) {
       </a>
       <button
         onClick={handleFavClick}
-        className={`${movieDeleteButton} ${movieSaveButton} ${
-          isSaved ? "movie__button_pressed" : ""
-        }`}
+        className={`${movieDeleteButton} ${movieSaveButton} ${movieSaveButtonPressed}`}
         type="button"
       >
         Сохранить

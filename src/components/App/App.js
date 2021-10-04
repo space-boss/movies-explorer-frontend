@@ -122,8 +122,7 @@ function App() {
   };
 
   function signOut() {
-    localStorage.removeItem("token");
-    localStorage.clear("movies");
+    localStorage.clear();
     setSavedMovies([]);
     history.push("/");
     setLoggedIn(false);
@@ -201,14 +200,12 @@ function App() {
   },[])
 
   function handleSaveMovie(movie) {
-    if (!savedMovies.some((item) => item.nameRU === movie.nameRU)) {
-      apiConfig
-        .createMovie(movie)
-        .then((savedMovie) => {
-          setSavedMovies([savedMovie, ...savedMovies]);
-        })
-        .catch((err) => console.log(err));
-    }
+    apiConfig
+      .createMovie(movie)
+      .then((savedMovie) => {
+        setSavedMovies([savedMovie, ...savedMovies]);
+      })
+      .catch((err) => console.log(err));
   }
 
   function handleDeleteMovie(movieId) {
@@ -224,10 +221,12 @@ function App() {
   }
 
   function handleFavButtonClick(movie) {
-    if (!movie.isSaved && !movie._id) {
+
+    const movieToHandle = savedMovies.find(item => item.nameRU === movie.nameRU)
+    if (!movieToHandle) {
       handleSaveMovie(movie);
     } else {
-      handleDeleteMovie(movie._id);
+      handleDeleteMovie(movieToHandle._id);
     }
   }
 
