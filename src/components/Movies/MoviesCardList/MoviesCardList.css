@@ -16,3 +16,8 @@
     grid-gap: 0;
   }
 }
+
+.movies-list__error {
+  text-align: center;
+  font-size: 22px;
+}

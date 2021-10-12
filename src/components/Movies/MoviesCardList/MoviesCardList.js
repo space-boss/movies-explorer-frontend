@@ -1,43 +1,60 @@
-import React, { useState } from "react";
+import React from "react";
 import "./MoviesCardList.css";
-import MoviesCard from '../MoviesCard/MoviesCard';
+import MoviesCard from "../MoviesCard/MoviesCard";
 
-function MoviesCardList() {
+function MoviesCardList(props) {
+  if (props.moviesSearchList === null) {
+    if (props.path === "/movies") {
+      return (
+        <div className="movies-list">
+          <p className="movies-list__error">Начните поиск</p>
+        </div>
+      );
+    }
 
-  const movies = [{
-    id: 1, 
-    nameRu: "В погоне за Бенкси", 
-    duration: "27 минут", 
-    image: "https://www.film.ru/sites/default/files/movies/posters/49621981-1239252.jpg"
-  },
+    if (props.path === "/saved-movies") {
+      return (
+        <div className="movies-list">
+          {props.savedMovies.map((savedMovie) => {
+            return (
+              <MoviesCard
+                movie={savedMovie}
+                key={savedMovie.movieId}
+                {...savedMovie}
+                savedMovies={props.savedMovies}
+                handleFavButtonClick={props.handleFavButtonClick}
+              />
+            );
+          })}
+        </div>
+      );
+    }
+  }
 
-  {
-    id: 2, 
-    nameRu: "В погоне за Бенкси", 
-    duration: "27 минут", 
-    image: "https://www.film.ru/sites/default/files/movies/posters/49621981-1239252.jpg"
-  },
-
-  {
-    id: 3, 
-    nameRu: "В погоне за Бенкси", 
-    duration: "27 минут", 
-    image: "https://www.film.ru/sites/default/files/movies/posters/49621981-1239252.jpg"
-  },
-
-  {
-    id: 4, 
-    nameRu: "В погоне за Бенкси", 
-    duration: "27 минут", 
-    image: "https://www.film.ru/sites/default/files/movies/posters/49621981-1239252.jpg"
-  }]
+  if (props.moviesSearchList.length === 0) {
+    return (
+      <div className="movies-list">
+        <p className="movies-list__error">Ничего не найдено</p>
+      </div>
+    );
+  }
 
   return (
-    <section className="movies-list">
-      {movies.map((movie) => (
-        <MoviesCard key={movie.id} movie={movie} />
-      ))}
-    </section>
+    <div className="movies-list">
+      {props.moviesSearchList.map((movie) => {
+        return (
+          <MoviesCard
+            movie={movie}
+            key={movie.id === undefined ? movie.movieId : movie.id}
+            {...movie}
+            handleSaveMovie={props.handleSaveMovie}
+            savedMovies={props.savedMovies}
+            handleFavButtonClick={props.handleFavButtonClick}
+            path={props.path}
+          />
+        );
+      })}
+    </div>
   );
 }
 

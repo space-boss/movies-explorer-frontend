@@ -5,15 +5,25 @@ import MoviesCardList from '../Movies/MoviesCardList/MoviesCardList';
 import Footer from '../Footer/Footer';
 import Header from "../Header/Header";
 
-
-function SavedMovies() {
+function SavedMovies(props) {
   return (
     <>
-    <Header loggedIn />
+    <Header loggedIn={props.isLoggedIn} />
     <main className="content">
       <title>Сохраненные фильмы</title>
-      <SearchForm />
-      <MoviesCardList />
+      <SearchForm
+        path={props.path}
+        movies={props.localStorageMovies}
+        savedMovies={props.savedMovies}
+        handleSearchMovies={props.handleSearchMovies}
+      />
+      <MoviesCardList 
+        path={props.path}
+        movies={props.movies}
+        savedMovies={props.savedMovies}
+        moviesSearchList={props.moviesSearchList}
+        handleFavButtonClick={props.handleFavButtonClick}
+      />
     </main>
     <Footer />
     </>
