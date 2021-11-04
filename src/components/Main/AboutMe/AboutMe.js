@@ -2,17 +2,22 @@ import React from "react";
 import "./AboutMe.css";
 import "../Main.css" ;
 import studentPicPath from '../../../images/about-irina.jpg';
+import {
+  STUDENT_TITLE,
+  STUDENT_NAME,
+  STUDENT_INFO,
+  STUDENT_BIO,
+} from "../../../utils/textConstants";
 
 function AboutMe() {
   return (
     <div id="aboutme" className="about-me">
-      <h3 className="main__block-description">Студентка</h3>
+      <h3 className="main__block-description">{STUDENT_TITLE}</h3>
       <div className="about-me__info">
         <div className="about-me__bio">
-          <h2 className="main__heading">Ирина</h2>
-          <h4 className="about-me__subtitle main__text-subtitle">Фронтенд-разработчик, 30 лет</h4>
-          <p className="main__text">Родилась и выросла во Владимире, но в 2014 году переехала в Гамбург учиться градостроительству.
-          Работаю по специальности, но хочу сменить сферу деятельности, чтобы быстрее видеть результаты своей работы, поэтому пошла на курсы веб-разработки. Увлекаюсь фотографией, разбираюсь в крафтовом пиве и сериалах.</p>
+          <h2 className="main__heading">{STUDENT_NAME}</h2>
+          <h4 className="about-me__subtitle main__text-subtitle">{STUDENT_INFO}</h4>
+          <p className="main__text">{STUDENT_BIO}</p>
           <nav>
             <ul className="about-me__links">
               <li><a href="https://www.facebook.com/irina.tkrv/" className="about-me__link" rel="noreferrer" target="_blank">Facebook</a></li>
@@ -20,7 +25,7 @@ function AboutMe() {
             </ul>
           </nav>
         </div>
-        <img className="about-me__userpic" src={studentPicPath} alt="Фото Ирины"/>
+        <img className="about-me__userpic" src={studentPicPath} alt="Student_picture"/>
       </div>
     </div>
   )

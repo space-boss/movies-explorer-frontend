@@ -2,6 +2,10 @@ import React, { useState } from "react";
 import "./SearchForm.css";
 import FilterCheckbox from '../FilterCheckbox/FilterCheckbox';
 
+import {
+  SEARCH_ERROR_MESSAGE
+} from "../../../utils/errorMessages";
+
 function SearchForm(props) {
 
   const [searchValue, setSearchValue] = useState('');
@@ -31,7 +35,7 @@ function SearchForm(props) {
   function handleSubmit(evt) {
     evt.preventDefault();
     if (searchValue === "") {
-      setSearchError("Нужно ввести ключевое слово")
+      setSearchError(SEARCH_ERROR_MESSAGE)
       return
     }
 
@@ -58,7 +62,7 @@ function SearchForm(props) {
           className="search__input"
           id="search-input"
           name="search-input"
-          placeholder="Фильм"
+          placeholder="Movie"
           minLength="1"
           maxLength="40"
         />

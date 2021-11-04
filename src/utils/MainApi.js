@@ -14,9 +14,9 @@ class Api {
 
   _checkResponse(res) {
     if (res.ok) {
-      return res.json(); 
+      return res.json();
     }
-    return Promise.reject(`Ошибка ${res.status}`);
+    return Promise.reject(`Error ${res.status}`);
   }
 
   getMovies = () => {
@@ -63,7 +63,7 @@ class Api {
       credentials: "include",
       headers: this._headers,
     })
-      .then(this._checkResponse); 
+      .then(this._checkResponse);
   }
 
   updateProfile(data) {

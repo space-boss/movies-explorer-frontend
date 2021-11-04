@@ -13,7 +13,6 @@ function Main(props) {
     <>
       <Header loggedIn={props.isLoggedIn}/>
       <main className="content">
-        <title>Главная страница</title>
         <Promo />
         <AboutProject />
         <Technologies />

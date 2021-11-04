@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
 import "./MoviesCard.css";
+import {
+  SAVE_BUTTON_LABEL
+} from "../../../utils/textConstants";
 
 function MoviesCard(props) {
   const location = useLocation();
@@ -58,7 +61,7 @@ function MoviesCard(props) {
         className={`${movieDeleteButton} ${movieSaveButton} ${movieSaveButtonPressed}`}
         type="button"
       >
-        Сохранить
+        {SAVE_BUTTON_LABEL}
       </button>
     </div>
   );

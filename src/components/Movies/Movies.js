@@ -50,7 +50,7 @@ function Movies(props) {
     <>
       <Header loggedIn={props.isLoggedIn} />
       <main className="content">
-        <title>Библиотека фильмов</title>
+        <title>Movie library</title>
         <SearchForm
           loggedIn={props.isLoggedIn}
           movies={props.localStorageMovies}

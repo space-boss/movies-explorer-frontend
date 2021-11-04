@@ -1,6 +1,12 @@
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import "./Navigation.css";
+import {
+  NAV_MAIN,
+  NAV_MOVIES,
+  NAV_MY_ACCOUNT,
+  NAV_SAVED_MOVIES
+} from "../../utils/textConstants";
 
 function Navigation(props) {
   const { isOpen, onClose } = props;
@@ -25,12 +31,12 @@ function Navigation(props) {
           <ul className="nav__links">
             <li className="nav__link">
               <Link to="/" className="nav__link">
-                Главная
+                {NAV_MAIN}
               </Link>
             </li>
             <li className="nav__link">
               <Link to="/movies" className={`nav__link ${moviesLinkHighlight}`}>
-                Фильмы
+                {NAV_MOVIES}
               </Link>
             </li>
             <li className="nav__link">
@@ -38,18 +44,18 @@ function Navigation(props) {
                 to="/saved-movies"
                 className={`nav__link ${savedMoviesLinkHighlight}`}
               >
-                Сохраненные фильмы
+                {NAV_SAVED_MOVIES}
               </Link>
             </li>
           </ul>
           <button
             type="button"
-            aria-label="Закрыть меню"
+            aria-label="Close the menu"
             className="nav__close-button"
             onClick={handleNavMenuClose}
           />
           <Link to="/profile" className="nav__link-profile">
-            Аккаунт
+            {NAV_MY_ACCOUNT}
           </Link>{" "}
         </nav>
       </div>

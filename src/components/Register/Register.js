@@ -3,12 +3,29 @@ import "./Register.css";
 import FormElement from "../FormElement/FormElement";
 import "../FormElement/FormElement.css";
 
+import {
+  OBLIGATORY_FIELD_ERROR_MESSAGE,
+  INVALID_EMAIL_ERROR_MESSAGE,
+  MIN_PASSWORD_LENGTH_MESSAGE,
+  MIN_USERNAME_LENGTH_MESSAGE,
+} from "../../utils/errorMessages";
+
+import {
+  NEW_USER_WELCOME_MESSAGE,
+  REGISTER_LABEL,
+  ALREADY_REGISTERED_MESSAGE,
+  LOGIN_LABEL,
+  NAME_LABEL,
+  EMAIL_LABEL,
+  PASSWORD_LABEL
+} from "../../utils/textConstants";
+
 function Register({onRegister}) {
 
   const [email, setUserEmail] = React.useState('');
   const [password, setUserPassword] = React.useState('');
   const [name, setUserName] = React.useState('');
-  
+
   const [emailError, setEmailError] = React.useState('');
   const [passwordError, setPasswordError] = React.useState('');
   const [nameError, setNameError] = React.useState('');
@@ -23,10 +40,10 @@ function Register({onRegister}) {
 
     const pattern = new RegExp(/^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i);
     if (!evt.target.value) {
-      setEmailError('Данное поле обязательно для заполнения');
+      setEmailError(OBLIGATORY_FIELD_ERROR_MESSAGE);
       setEmailTrue(false);
     } else if (!pattern.test(String(evt.target.value).toLowerCase())) {
-      setEmailError('Введите корректный email');
+      setEmailError(INVALID_EMAIL_ERROR_MESSAGE);
       setEmailTrue(false);
     } else {
       setEmailError('');
@@ -38,10 +55,10 @@ function Register({onRegister}) {
     setUserPassword(evt.target.value)
 
     if (!evt.target.value) {
-      setPasswordError('Данное поле обязательно для заполнения');
+      setPasswordError(OBLIGATORY_FIELD_ERROR_MESSAGE);
       setPasswordTrue(false);
     } else if (evt.target.value.length < 8 ) {
-      setPasswordError('Минимальная длина пароля - 8 символов');
+      setPasswordError(MIN_PASSWORD_LENGTH_MESSAGE);
       setPasswordTrue(false);
     } else {
       setPasswordError('');
@@ -53,10 +70,10 @@ function Register({onRegister}) {
     setUserName(evt.target.value)
 
     if (!evt.target.value) {
-      setNameError('Данное поле обязательно для заполнения');
+      setNameError(OBLIGATORY_FIELD_ERROR_MESSAGE);
       setNameTrue(false);
     } else if (evt.target.value.length <= 2 ) {
-      setNameError('Имя пользователя должно быть длиннее двух символов');
+      setNameError(MIN_USERNAME_LENGTH_MESSAGE);
       setNameTrue(false);
     } else {
       setNameError('');
@@ -66,66 +83,66 @@ function Register({onRegister}) {
 
 
   function handleFormSubmit(evt) {
-    evt.preventDefault(); 
+    evt.preventDefault();
     onRegister({
-      name: name, 
+      name: name,
       password: password,
       email: email,
     })
   }
 
-  const isEnabled = emailTrue && nameTrue && passwordTrue; 
+  const isEnabled = emailTrue && nameTrue && passwordTrue;
 
   return (
     <section className="register">
       <FormElement
         name="register"
-        title="Добро пожаловать!"
-        submit="Зарегестрироваться"
-        suggestion="Уже зарегестрированы?"
+        title={NEW_USER_WELCOME_MESSAGE}
+        submit={REGISTER_LABEL}
+        suggestion={ALREADY_REGISTERED_MESSAGE}
         link="/signin"
-        action="Войти"
+        action={LOGIN_LABEL}
         onSubmit={handleFormSubmit}
         disabled={!isEnabled}
       >
-        <h4 className="form__input-label">Имя</h4>
+        <h4 className="form__input-label">{NAME_LABEL}</h4>
         <input
           value={name}
           onChange={handleNameInput}
           type="text"
           id="register-name"
           name="newusername"
-          placeholder="Имя"
+          placeholder={NAME_LABEL}
           className={`form__input ${nameTrue ? "" : "form__input_false"}`}
-          required 
-          minLength="2" 
+          required
+          minLength="2"
           maxLength="40"
         />
         <span id="form-username-error" className="form__input-error">{nameError}</span>
-        <h4 className="form__input-label">Email</h4>
+        <h4 className="form__input-label">{EMAIL_LABEL}</h4>
         <input
           value={email}
           onChange={handleEmailInput}
           type="email"
           id="register-email"
           name="newuseremail"
-          placeholder="Email"
+          placeholder={EMAIL_LABEL}
           className={`form__input ${emailTrue ? "" : "form__input_false"}`}
-          required 
-          minLength="2" 
+          required
+          minLength="2"
           maxLength="40"
         />
         <span  id="form-email-error" className="form__input-error">{emailError}</span>
-        <h4 className="form__input-label">Пароль</h4>
+        <h4 className="form__input-label">{PASSWORD_LABEL}</h4>
         <input
           value={password}
           onChange={handlePasswordInput}
           type="password"
           id="register-password"
           name="newuserpassword"
-          placeholder="Пароль"
+          placeholder={PASSWORD_LABEL}
           className={`form__input ${passwordTrue ? "" : "form__input_false"}`}
-          required 
+          required
           minLength="8"
           maxLength="40"
         />

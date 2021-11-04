@@ -7,7 +7,7 @@ function InfoTooltip(props) {
       <div className="popup__container">
         <button
           className="popup__close"
-          aria-label="закрыть"
+          aria-label="close"
           onClick={props.onClose}
         ></button>
 

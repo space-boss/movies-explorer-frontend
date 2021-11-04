@@ -1,6 +1,6 @@
 import React, { useCallback } from "./react";
 
-//хук управления формой
+//hook for handling the form
 export function useForm() {
   const [values, setValues] = React.useState({});
 
@@ -14,7 +14,7 @@ export function useForm() {
   return {values, handleChange, setValues};
 }
 
-//хук управления формой и валидации формы
+//hook for form validation
 export function useFormWithValidation() {
   const [values, setValues] = React.useState({});
   const [errors, setErrors] = React.useState({});
