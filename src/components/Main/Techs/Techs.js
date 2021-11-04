@@ -1,17 +1,21 @@
 import React from 'react';
 import './Techs.css';
 import '../Main.css';
+import {
+  STACK_TITLE,
+  STACK_ABOUT,
+  STACK_SIZE,
+} from "../../../utils/textConstants";
 
 function Technologies() {
   return (
     <div className="techs" id="techs">
-      <h3 className="main__block-description">Технологии</h3>
+      <h3 className="main__block-description">{STACK_TITLE}</h3>
 
       <div className="techs__main">
-        <h2 className="main__heading main__heading-techs">7 технологий</h2>
+        <h2 className="main__heading main__heading-techs">{STACK_SIZE}</h2>
         <p className="techs__main-paragraph main__text">
-          На курсе веб-разработки мы освоили технологии, которые применили в
-          дипломном проекте.
+          {STACK_ABOUT}
         </p>
         <div className="techs__landing">
           <div className="techs__landing-icon">HTML</div>

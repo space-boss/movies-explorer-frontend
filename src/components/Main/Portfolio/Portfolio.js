@@ -1,6 +1,12 @@
 import React from "react";
 import "./Portfolio.css";
 import "../Main.css";
+import {
+  PORTFOLIO_LABEL,
+  PORTFOLIO_STATIC,
+  PORTFOLIO_ADAPTIVE,
+  PORTFOLIO_SINGLE_PAGE,
+} from "../../../utils/textConstants";
 const staticSiteLink = "https://space-boss.github.io/how-to-learn";
 const adaptiveSiteLink = "https://space-boss.github.io/russian-travel/";
 const appSiteLink = "https://spaceboss.mesto.nomoredomains.club/sign-up";
@@ -8,7 +14,7 @@ const appSiteLink = "https://spaceboss.mesto.nomoredomains.club/sign-up";
 function Portfolio() {
   return (
     <div className="portfolio">
-      <h4 className="portfolio__title">Портфолио</h4>
+      <h4 className="portfolio__title">{PORTFOLIO_LABEL}</h4>
       <nav>
         <div className="portfolio__links">
           <a
@@ -17,7 +23,7 @@ function Portfolio() {
             rel="noreferrer"
             target="_blank"
           >
-            Статичный сайт
+            {PORTFOLIO_STATIC}
           </a>
           <a
             href={staticSiteLink}
@@ -34,7 +40,7 @@ function Portfolio() {
             rel="noreferrer"
             target="_blank"
           >
-            Адаптивный сайт
+            {PORTFOLIO_ADAPTIVE}
           </a>
           <a
             href={adaptiveSiteLink}
@@ -51,7 +57,7 @@ function Portfolio() {
             rel="noreferrer"
             target="_blank"
           >
-            Одностраничное приложение
+            {PORTFOLIO_SINGLE_PAGE}
           </a>
           <a
             href={appSiteLink}

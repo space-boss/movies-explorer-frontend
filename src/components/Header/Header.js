@@ -29,7 +29,7 @@ function Header(props) {
         <img
           className="header__logo"
           src={headerLogoPath}
-          alt="Логотип учетной записи"
+          alt="account logo"
         />{" "}
       </Link>
 
@@ -59,18 +59,18 @@ function Header(props) {
                     to="/movies"
                     className={`header__link-movies ${moviesLinkHighlight}`}
                   >
-                    Фильмы
+                    Movies
                   </Link>
                   <Link
                     to="/saved-movies"
                     className={`header__link-movies ${savedMoviesLinkHighlight}`}
                   >
-                    Сохраненные фильмы
+                    Saved Movies
                   </Link>
                 </nav>
               </div>
               <Link to="/profile" className="header__link-profile">
-                Аккаунт
+                Profile
               </Link>
             </>
           )}
@@ -78,10 +78,10 @@ function Header(props) {
       ) : (
         <nav className="header__links-main">
           <Link to="/signup" className="header__link">
-            Регистрация
+            Sign up
           </Link>
           <Link to="/signin" className="header__link header__link_calltoaction">
-            Войти
+            Sign in
           </Link>
         </nav>
       )}

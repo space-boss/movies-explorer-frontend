@@ -1,13 +1,17 @@
 import React from "react";
 import "./MoviesCardList.css";
 import MoviesCard from "../MoviesCard/MoviesCard";
+import {
+  START_SEARCH,
+  NOTHING_FOUND
+} from "../../../utils/textConstants";
 
 function MoviesCardList(props) {
   if (props.moviesSearchList === null) {
     if (props.path === "/movies") {
       return (
         <div className="movies-list">
-          <p className="movies-list__error">Начните поиск</p>
+          <p className="movies-list__error">{START_SEARCH}</p>
         </div>
       );
     }
@@ -34,7 +38,7 @@ function MoviesCardList(props) {
   if (props.moviesSearchList.length === 0) {
     return (
       <div className="movies-list">
-        <p className="movies-list__error">Ничего не найдено</p>
+        <p className="movies-list__error">{NOTHING_FOUND}</p>
       </div>
     );
   }

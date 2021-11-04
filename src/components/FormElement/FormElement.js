@@ -10,7 +10,7 @@ function FormElement(props) {
         <img
           className="header__logo"
           src={headerLogoPath}
-          alt="Логотип учетной записи"
+          alt="User profile logo"
         />
       </Link>
       <section className="form">

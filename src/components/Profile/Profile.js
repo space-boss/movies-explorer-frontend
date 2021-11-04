@@ -3,6 +3,20 @@ import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import "./Profile.css";
 import Header from "../Header/Header";
 
+import {
+  OBLIGATORY_FIELD_ERROR_MESSAGE,
+  MIN_USERNAME_LENGTH_MESSAGE,
+  INVALID_EMAIL_ERROR_MESSAGE,
+} from "../../utils/errorMessages";
+
+import {
+  NAME_LABEL,
+  EMAIL_LABEL,
+  EDIT_LABEL,
+  EXIT_PROFILE_LABEL
+} from "../../utils/textConstants";
+
+
 function Profile(props) {
   const currentUser = React.useContext(CurrentUserContext);
 
@@ -25,10 +39,10 @@ function Profile(props) {
     setUserName(evt.target.value);
 
     if (!evt.target.value) {
-      setNameError('Данное поле обязательно для заполнения');
+      setNameError(OBLIGATORY_FIELD_ERROR_MESSAGE);
       setNameTrue(false);
     } else if (evt.target.value.length <= 2 ) {
-      setNameError('Минимальная длина имени - 2 символа');
+      setNameError(MIN_USERNAME_LENGTH_MESSAGE);
       setNameTrue(false);
     } else {
       setNameError('');
@@ -41,10 +55,10 @@ function Profile(props) {
 
     const pattern = new RegExp(/^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i);
     if (!evt.target.value) {
-      setEmailError('Данное поле обязательно для заполнения');
+      setEmailError(OBLIGATORY_FIELD_ERROR_MESSAGE);
       setEmailTrue(false);
     } else if (!pattern.test(String(evt.target.value).toLowerCase())) {
-      setEmailError('Введите корректный email');
+      setEmailError(INVALID_EMAIL_ERROR_MESSAGE);
       setEmailTrue(false);
     } else {
       setEmailError('');
@@ -71,30 +85,30 @@ function Profile(props) {
         <h3 className="profile__title">{`Привет, ${currentUser.name}`}</h3>
         <form className="profile__form" onSubmit={handleSubmit}>
           <div className="profile__info-container">
-            <h4 className="profile__info-text">Имя</h4>
+            <h4 className="profile__info-text">{NAME_LABEL}</h4>
             <input
               type="text"
               id="profile-name"
               value={name}
               onChange={changeUserName}
               name="username"
-              placeholder="Имя"
-              className="profile__info-text profile__info-text_value" 
+              placeholder={NAME_LABEL}
+              className="profile__info-text profile__info-text_value"
               minLength={2}
               maxLength={40}
             />
             <span id="profile-name-error" className="form__profile-input-error">{nameError}</span>
 
             <div className="profile__line"></div>
-            <h4 className="profile__info-text">E-mail</h4>
+            <h4 className="profile__info-text">{EMAIL_LABEL}</h4>
             <input
               type="text"
               id="profile-email"
               name="email"
               value={email}
               onChange={changeUserEmail}
-              placeholder="Email "
-              className="profile__info-text profile__info-text_value" 
+              placeholder={EMAIL_LABEL}
+              className="profile__info-text profile__info-text_value"
             />
             <span id="profile-email-error" className="form__profile-input-error">{emailError}</span>
 
@@ -104,7 +118,7 @@ function Profile(props) {
             name="edit-profile"
             type="submit"
             className={`profile__link ${!isEnabled && 'profile__link_disabled'}`}
-            value="Редактировать"
+            value={EDIT_LABEL}
           />
         </form>
         <input
@@ -112,7 +126,7 @@ function Profile(props) {
           name="exit-profile"
           type="submit"
           className="profile__link profile__link_exit"
-          value="Выйти из аккаунта"
+          value={EXIT_PROFILE_LABEL}
         />
       </section>
     </>

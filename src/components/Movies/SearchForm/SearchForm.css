@@ -33,6 +33,7 @@
   background-image: url(../../../images/search-button.svg);
   transition: opacity 0.4s;
   cursor: pointer;
+  align-self: normal;
 }
 
 .search__submit-button:hover {

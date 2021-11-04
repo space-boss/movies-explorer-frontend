@@ -3,12 +3,19 @@ import "./Login.css";
 import FormElement from "../FormElement/FormElement";
 import "../FormElement/FormElement.css";
 import { useHistory } from 'react-router-dom';
+import {
+  OBLIGATORY_FIELD_ERROR_MESSAGE, INVALID_EMAIL_ERROR_MESSAGE, MIN_PASSWORD_LENGTH_MESSAGE
+} from "../../utils/errorMessages";
+
+import {
+  SIGNED_UP_WELCOME_MESSAGE, NEW_USER_REGISTRATION_MESSAGE, REGISTER_LABEL,
+} from "../../utils/textConstants";
 
 function Login({ onLogin }) {
 
   const [email, setUserEmail] = React.useState('');
   const [password, setUserPassword] = React.useState('');
-  
+
   const [emailError, setEmailError] = React.useState('');
   const [passwordError, setPasswordError] = React.useState('');
 
@@ -22,10 +29,10 @@ function Login({ onLogin }) {
 
     const pattern = new RegExp(/^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i);
     if (!evt.target.value) {
-      setEmailError('Данное поле обязательно для заполнения');
+      setEmailError(OBLIGATORY_FIELD_ERROR_MESSAGE);
       setEmailTrue(false);
     } else if (!pattern.test(String(evt.target.value).toLowerCase())) {
-      setEmailError('Введите корректный email');
+      setEmailError(INVALID_EMAIL_ERROR_MESSAGE);
       setEmailTrue(false);
     } else {
       setEmailError('');
@@ -37,10 +44,10 @@ function Login({ onLogin }) {
     setUserPassword(evt.target.value);
 
     if (!evt.target.value) {
-      setPasswordError('Данное поле обязательно для заполнения');
+      setPasswordError(OBLIGATORY_FIELD_ERROR_MESSAGE);
       setPasswordTrue(false);
     } else if (evt.target.value.length < 8 ) {
-      setPasswordError('Минимальная длина пароля - 8 символов');
+      setPasswordError(MIN_PASSWORD_LENGTH_MESSAGE);
       setPasswordTrue(false);
     } else {
       setPasswordError('');
@@ -69,11 +76,11 @@ function Login({ onLogin }) {
       <FormElement
         disabled={!isEnabled}
         name="login"
-        title="Рады видеть!"
-        submit="Войти"
-        suggestion="Еще не зарегистрированы?"
+        title={SIGNED_UP_WELCOME_MESSAGE}
+        submit="Sign in"
+        suggestion={NEW_USER_REGISTRATION_MESSAGE}
         link="/signup"
-        action="Регистрация"
+        action={REGISTER_LABEL}
         onSubmit={handleFormSubmit}
       >
         <h4 className="form__input-label">Email</h4>
@@ -91,14 +98,14 @@ function Login({ onLogin }) {
         />
         <span  id="form-email-error" className="form__input-error">{emailError}</span>
 
-        <h4 className="form__input-label">Пароль</h4>
+        <h4 className="form__input-label">Password</h4>
         <input
           onChange={handlePasswordInput}
           value={password}
           type="password"
           id="register-password"
           name="newuserpassword"
-          placeholder="Пароль"
+          placeholder="Password"
           className={`form__input ${passwordTrue ? "" : "form__input_false"}`}
           required
           minLength="8"

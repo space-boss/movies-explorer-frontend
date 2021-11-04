@@ -14,6 +14,14 @@ import { apiConfig } from "../../utils/MainApi";
 import { movieApiConfig } from "../../utils/MoviesApi";
 import { authApi } from "../../utils/auth";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
+import {
+  CREDENTIALS_ERROR_MESSAGE,
+  GENERIC_ERROR_MESSAGE,
+  NO_NOTOKEN_ERROR_MESSAGE,
+  SERVER_ERROR_MESSAGE,
+  WRONG_TOKEN_ERROR_MESSAGE,
+  PROFILE_UPDATE_SUCCESS_MESSAGE
+} from "../../utils/errorMessages";
 
 function App() {
   const [isLoggedIn, setLoggedIn] = React.useState(false);
@@ -67,7 +75,7 @@ function App() {
     return authApi
       .authorize(email, password)
       .then((data) => {
-        if (!data) throw new Error("Неверные имя пользователя или пароль");
+        if (!data) throw new Error(CREDENTIALS_ERROR_MESSAGE);
         if (data.token) {
           localStorage.setItem("token", data.token);
           apiConfig.setToken();
@@ -79,7 +87,7 @@ function App() {
       })
       .catch((err) => {
         openInfoTooltip();
-        setInfoTooltipMessage("Что-то пошло не так. Попробуйте еще раз");
+        setInfoTooltipMessage(GENERIC_ERROR_MESSAGE);
         console.log(err);
       });
   };
@@ -89,7 +97,7 @@ function App() {
       .register(name, email, password)
       .then((res) => {
         if (!res || res.statusCode === 400)
-          throw new Error("Что-то пошло не так");
+          throw new Error(GENERIC_ERROR_MESSAGE);
         setIsRegistered(true);
         handleLogin({email, password});
         return res;
@@ -112,10 +120,10 @@ function App() {
         history.push('/signin');
 
         if (err === "400") {
-          console.log("Токен не задан")
+          console.log(NO_NOTOKEN_ERROR_MESSAGE)
         }
         if (err === "401") {
-           console.log("Передан неверный токен");
+           console.log(WRONG_TOKEN_ERROR_MESSAGE);
         }
       })
     }
@@ -167,7 +175,7 @@ function App() {
         .catch((err) => {
           setIsLoading(false);
           setSearchError(
-            "Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз"
+            SERVER_ERROR_MESSAGE
           );
         });
     }
@@ -180,7 +188,7 @@ function App() {
         .then((res) => {
           setCurrentUser(res);
           openInfoTooltip();
-          setInfoTooltipMessage("Изменения успешно сохранены");
+          setInfoTooltipMessage(PROFILE_UPDATE_SUCCESS_MESSAGE);
         })
         .catch((err) => {
           console.log(err);
