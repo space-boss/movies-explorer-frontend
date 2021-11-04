@@ -8,13 +8,12 @@
   margin-top: 66px;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
 }
 
 .about-me__userpic {
   width: 270px;
   height: 327px;
-  object-fit: cover;  
+  object-fit: cover;
   border-radius: 10px;
   margin-left: 50px;
 }

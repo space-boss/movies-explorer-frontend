@@ -37,7 +37,7 @@ export const MORE_LABEL = "Show more";
 
 export const SHORT_MOVIE_LABEL = "Only short movies";
 
-export const SAVE_BUTTON_LABEL = "Save changes";
+export const SAVE_BUTTON_LABEL = "Save";
 
 export const START_SEARCH = "Start search";
 export const NOTHING_FOUND = "Nothing was found";
